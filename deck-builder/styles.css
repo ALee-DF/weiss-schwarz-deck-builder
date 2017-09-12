@@ -4,3 +4,20 @@ body {
   background-repeat: repeat-y;
   background-attachment: fixed;
 }
+
+#booster-packs-section {
+  width: 50%;
+}
+
+.booster-pack-tile {
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  width: 150px;
+  height: 200px;
+}
+
+.booster-pack-icon {
+  width: 107px;
+  height: 150px;
+}
