@@ -15,7 +15,7 @@ body {
   height: 400px;
 }
 
-button {
+.button-tiles {
   padding: 10px;
   background-color: white;
 }
