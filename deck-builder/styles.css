@@ -1,23 +1,21 @@
 body {
   width: 1200px;
   margin: 0 auto;
-  background-image: url('Weiss Schwarz Background.jpg');
-  background-position: center top;
-  background-repeat: repeat-y;
-  background-attachment: fixed;
+  background-color: rgb(192, 192, 192);
   font-family: 'Open Sans', sans-serif;
 }
 
 #booster-packs-section {
-  width: 49%;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .booster-pack-tile {
+  width: 150px;
+  height: 200px;
+  background-color: blue;
   overflow: hidden;
   display: inline-block;
   text-align: center;
-  width: 150px;
-  height: 200px;
 }
 
 .booster-pack-icon {
