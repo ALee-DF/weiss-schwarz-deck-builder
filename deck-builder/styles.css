@@ -1,13 +1,13 @@
 body {
   width: 1200px;
   margin: 0 auto;
-  background-color: rgb(192, 192, 192);
+  background-color: rgb(230, 230, 230);
   font-family: 'Open Sans', sans-serif;
 }
 
 #booster-packs-section {
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  background-color: rgba(192, 192, 192, 0.2);
 }
 
 .booster-pack-icon {
