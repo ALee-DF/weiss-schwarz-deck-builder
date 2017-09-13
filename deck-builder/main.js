@@ -29,20 +29,20 @@ var boosterPacksList = [
 
 var $boosterPacksSection = document.querySelector('#booster-packs-section')
 
-function renderPack(packObject) {
-  var $newPack = document.createElement('button')
-  var $newCover = document.createElement('img')
-  var $newName = document.createElement('p')
-  $newCover.className = 'booster-pack-icon'
-  $newCover.src = packObject.cover
-  $newCover.alt = packObject.name
+function renderPack(pack) {
+  var $pack = document.createElement('button')
+  var $cover = document.createElement('img')
+  var $name = document.createElement('p')
+  $cover.className = 'booster-pack-icon'
+  $cover.src = pack.cover
+  $cover.alt = pack.name
 
-  $newName.textContent = packObject.name
+  $name.textContent = pack.name
 
-  $newPack.id = packObject.id
-  $newPack.appendChild($newCover)
-  $newPack.appendChild($newName)
-  return $newPack
+  $pack.id = pack.id
+  $pack.appendChild($cover)
+  $pack.appendChild($name)
+  return $pack
 }
 
 for (var i = 0; i < boosterPacksList.length; i++) {
