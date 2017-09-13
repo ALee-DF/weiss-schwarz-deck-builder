@@ -27,5 +27,7 @@ body {
 }
 
 .pack-selected {
+  margin: 2px;
+  padding: 10px;
   background-color: grey;
 }

@@ -50,3 +50,16 @@ function renderPack(pack) {
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
+
+var $buttons = document.querySelectorAll('.button-tiles')
+
+for (var j = 0; j < $buttons.length; j++) {
+  $buttons[j].addEventListener('click', function (event) {
+    if (event.currentTarget.getAttribute('class') === 'button-tiles') {
+      event.currentTarget.setAttribute('class', 'pack-selected')
+    }
+    else {
+      event.currentTarget.setAttribute('class', 'button-tiles')
+    }
+  })
+}
