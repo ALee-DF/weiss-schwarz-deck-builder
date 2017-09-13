@@ -1,0 +1,31 @@
+body {
+  width: 1200px;
+  margin: 0 auto;
+  background-color: rgb(230, 230, 230);
+  font-family: 'Open Sans', sans-serif;
+}
+
+#booster-packs-section {
+  padding: 30px;
+  background-color: rgba(192, 192, 192, 0.2);
+}
+
+.booster-pack-icon {
+  width: 200px;
+  height: 400px;
+}
+
+.button-tiles {
+  margin: 2px;
+  padding: 10px;
+  background-color: white;
+}
+
+.pack-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.pack-selected {
+  background-color: grey;
+}
