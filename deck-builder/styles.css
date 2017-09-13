@@ -20,6 +20,11 @@ body {
   background-color: white;
 }
 
+.pack-title {
+  margin: 0;
+  font-size: 20px;
+}
+
 .pack-selected {
   background-color: grey;
 }

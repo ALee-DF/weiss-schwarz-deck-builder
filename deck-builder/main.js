@@ -37,9 +37,11 @@ function renderPack(pack) {
   $cover.src = pack.cover
   $cover.alt = pack.name
 
+  $name.className = 'pack-title'
   $name.textContent = pack.name
 
   $pack.id = pack.id
+  $pack.className = 'button-tiles'
   $pack.appendChild($cover)
   $pack.appendChild($name)
   return $pack
