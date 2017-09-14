@@ -29,5 +29,13 @@ body {
 .pack-selected {
   margin: 2px;
   padding: 10px;
-  background-color: grey;
+  background-color: deepskyblue;
+}
+
+#confirm {
+  float: right;
+  font-size: 20px;
+  color: white;
+  padding: 10px;
+  background-color: limegreen;
 }
