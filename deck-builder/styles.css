@@ -6,6 +6,7 @@ body {
 }
 
 #booster-packs-section {
+  width: 1140px;
   padding: 30px;
   background-color: rgba(192, 192, 192, 0.2);
 }
@@ -41,7 +42,94 @@ body {
   background-color: limegreen;
 }
 
-#card-list {
+#card-list-section {
   clear: right;
   background-color: rgba(192, 192, 192, 0.2);
+}
+
+.card-preview {
+  width: 80px;
+  height: 80px;
+}
+
+.preview-padding {
+  padding: 0;
+}
+
+table,
+th,
+td {
+  border: 2px solid black;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 1200px;
+}
+
+th {
+  font-size: 24px;
+}
+
+td {
+  font-size: 20px;
+  line-height: 10px;
+  padding: 10px;
+}
+
+#card-illustration {
+  width: 80px;
+}
+
+#card-numbers {
+  width: 180px;
+}
+
+#card-types {
+  width: 150px;
+}
+
+#color {
+  width: 90px;
+}
+
+.yellow-card {
+  text-align: center;
+  background-color: rgb(255, 223, 0);
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: white;
+}
+
+.red-card {
+  text-align: center;
+  background-color: red;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: white;
+}
+
+.blue-card {
+  text-align: center;
+  background-color: blue;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: white;
+}
+
+.green-card {
+  text-align: center;
+  background-color: green;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: white;
 }
