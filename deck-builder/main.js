@@ -3,7 +3,34 @@ var boosterPacksList = [
   {
     id: 'attack-on-titan-bp',
     cover: 'booster-packs/aot-card-list/aot-bp.jpg',
-    name: 'Attack on Titan'
+    name: 'Attack on Titan',
+    cards: [
+      {
+        id: 's35-e001',
+        cardName: '"Beyond the Walls" Eren',
+        cardNumber: 'AOT/S35-E001',
+        expansion: 'Attack on Titan',
+        cardType: 'Character',
+        level: 0,
+        power: 1000,
+        trigger: '-',
+        rarity: 'R',
+        side: 'S',
+        color: 'yellow',
+        cost: 0,
+        soul: 1,
+        attribute: ['Corps', 'Weapon'],
+        text: '【CONT】 During your turn, your other character in the middle ' +
+          'position of the center stage gets +1000 power.\n【ACT】 Brainstorm ' +
+          '[(1) 【REST】 this card] Reveal four cards from the top of your ' +
+          'deck, and put them into your waiting room. For each climax ' +
+          'revealed, search your deck for up to one 《Corps》 character, ' +
+          'reveal it to your opponent, and put it into your hand. Shuffle ' +
+          'your deck afterwards.',
+        previewPic: 'booster-packs/aot-card-list/card-preview/s35-e001-preview.jpg',
+        picture: 'booster-packs/aot-card-list/card/s35-e001.jpg'
+      }
+    ]
   },
   {
     id: 'love-live-bp',
