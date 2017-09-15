@@ -133,3 +133,7 @@ td {
   font-size: 15px;
   color: white;
 }
+
+.hide-section {
+  display: none;
+}
