@@ -445,19 +445,21 @@ for (var j = 0; j < $buttons.length; j++) {
 }
 
 $confirm.addEventListener('click', function () {
-  $boosterPacksSection.classList.add('hidden')
-  $cardListSection.classList.remove('hidden')
-  $displayPacksSelected.classList.remove('hidden')
-  $confirm.classList.add('hidden')
-  $returnBpSection.classList.remove('hidden')
-  clearList()
-  $selectedPacks.sort()
-  $displayPacksSelected.textContent = displayPacks($selectedPacks)
-  for (var l = 0; l < $selectedPacks.length; l++) {
-    for (var m = 0; m < boosterPacksList.length; m++) {
-      if ($selectedPacks[l] === boosterPacksList[m].id) {
-        for (var n = 0; n < boosterPacksList[m].cards.length; n++) {
-          $cardList.appendChild(renderCard(boosterPacksList[m].cards[n]))
+  if ($selectedPacks.length > 0) {
+    $boosterPacksSection.classList.add('hidden')
+    $cardListSection.classList.remove('hidden')
+    $displayPacksSelected.classList.remove('hidden')
+    $confirm.classList.add('hidden')
+    $returnBpSection.classList.remove('hidden')
+    clearList()
+    $selectedPacks.sort()
+    $displayPacksSelected.textContent = displayPacks($selectedPacks)
+    for (var l = 0; l < $selectedPacks.length; l++) {
+      for (var m = 0; m < boosterPacksList.length; m++) {
+        if ($selectedPacks[l] === boosterPacksList[m].id) {
+          for (var n = 0; n < boosterPacksList[m].cards.length; n++) {
+            $cardList.appendChild(renderCard(boosterPacksList[m].cards[n]))
+          }
         }
       }
     }
