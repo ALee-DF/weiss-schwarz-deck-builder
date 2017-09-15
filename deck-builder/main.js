@@ -422,26 +422,18 @@ function clearList() {
   }
 }
 
-// Populate booster packs list
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
 
-// Create Event Listeners for each button in the booster packs list
 var $buttons = document.querySelectorAll('.button-tiles')
 for (var j = 0; j < $buttons.length; j++) {
   $buttons[j].addEventListener('click', function (event) {
-    // If booster pack is selected, the button's class is changed to
-    // 'pack-selected' and the selected booster pack is recorded into
-    // $selectedPacks array
     if (event.currentTarget.getAttribute('class') === 'button-tiles') {
       $selectedPacks.push(event.currentTarget.getAttribute('id'))
       event.currentTarget.setAttribute('class', 'pack-selected')
     }
     else {
-      // If booster pack is unselected, the button's class returns to
-      // 'button-tiles' and the unselected booster pack is removed from
-      // $selectedPacks array.
       for (var k = 0; k < $selectedPacks.length; k++) {
         if (event.currentTarget.getAttribute('id') === $selectedPacks[k]) {
           $selectedPacks.splice(k, 1)
@@ -452,8 +444,6 @@ for (var j = 0; j < $buttons.length; j++) {
   })
 }
 
-// Once the user presses the "CONFIRM" button, the card list will populate
-// according to the packs selected and the booster pack list will disappear.
 $confirm.addEventListener('click', function () {
   $boosterPacksSection.classList.add('hidden')
   $cardListSection.classList.remove('hidden')
@@ -474,8 +464,6 @@ $confirm.addEventListener('click', function () {
   }
 })
 
-// When the user presses the "RETURN" button, the user is brought back to the
-// booster pack list
 $returnBpSection.addEventListener('click', function () {
   $boosterPacksSection.classList.remove('hidden')
   $cardListSection.classList.add('hidden')
