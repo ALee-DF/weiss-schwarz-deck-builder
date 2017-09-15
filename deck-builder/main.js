@@ -323,6 +323,7 @@ var boosterPacksList = [
 ]
 
 var $boosterPacksSection = document.querySelector('#booster-packs-section')
+var $cardListSection = document.querySelector('#card-list-section')
 var $cardList = document.querySelector('#card-list')
 var $confirm = document.querySelector('#confirm')
 var $selectedPacks = []
@@ -422,9 +423,19 @@ function renderCard(card) {
   return $row
 }
 
+function clearList() {
+  var $existingList = $cardList.childNodes
+  while ($existingList.length > 0) {
+    $existingList[0].remove()
+  }
+}
+
 // Once the user presses the "Confirm Button", the card list will populate
 // according to the packs selected.
 $confirm.addEventListener('click', function () {
+  $boosterPacksSection.classList.add('hidden')
+  $cardListSection.classList.remove('hidden')
+  clearList()
   $selectedPacks.sort()
   for (var l = 0; l < $selectedPacks.length; l++) {
     for (var m = 0; m < boosterPacksList.length; m++) {
