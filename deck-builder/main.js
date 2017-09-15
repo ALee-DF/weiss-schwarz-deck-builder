@@ -199,12 +199,14 @@ var boosterPacksList = [
   {
     id: 'love-live-bp',
     cover: 'booster-packs/love-live!-card-list/love-live!-bp.jpg',
-    name: 'Love Live!'
+    name: 'Love Live!',
+    cards: []
   },
   {
     id: 'love-live-vol-2-bp',
     cover: 'booster-packs/love-live!-vol-2-card-list/love-live!-vol-2-bp.jpg',
-    name: 'Love Live! Vol.2'
+    name: 'Love Live! Vol.2',
+    cards: []
   },
   {
     id: 'sword-art-online-bp',
@@ -318,7 +320,8 @@ var boosterPacksList = [
   {
     id: 'sword-art-online-vol-2-bp',
     cover: 'booster-packs/sao-vol-2-card-list/sao-vol-2-bp.jpg',
-    name: 'Sword Art Online Vol. 2'
+    name: 'Sword Art Online Vol. 2',
+    cards: []
   }
 ]
 
@@ -346,36 +349,6 @@ function renderPack(pack) {
   $pack.appendChild($cover)
   $pack.appendChild($name)
   return $pack
-}
-
-// Populate booster packs list
-for (var i = 0; i < boosterPacksList.length; i++) {
-  $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
-}
-
-// Create Event Listeners for each button in the booster packs list
-var $buttons = document.querySelectorAll('.button-tiles')
-for (var j = 0; j < $buttons.length; j++) {
-  $buttons[j].addEventListener('click', function (event) {
-    // If booster pack is selected, the button's class is changed to
-    // 'pack-selected' and the selected booster pack is recorded into
-    // $selectedPacks array
-    if (event.currentTarget.getAttribute('class') === 'button-tiles') {
-      $selectedPacks.push(event.currentTarget.getAttribute('id'))
-      event.currentTarget.setAttribute('class', 'pack-selected')
-    }
-    else {
-      // If booster pack is unselected, the button's class returns to
-      // 'button-tiles' and the unselected booster pack is removed from
-      // $selectedPacks array.
-      for (var k = 0; k < $selectedPacks.length; k++) {
-        if (event.currentTarget.getAttribute('id') === $selectedPacks[k]) {
-          $selectedPacks.splice(k, 1)
-        }
-      }
-      event.currentTarget.setAttribute('class', 'button-tiles')
-    }
-  })
 }
 
 function renderCard(card) {
@@ -425,6 +398,23 @@ function renderCard(card) {
   return $row
 }
 
+function displayPacks(packs) {
+  var string = 'Packs Selected: '
+  for (var p = 0; p < packs.length; p++) {
+    for (var q = 0; q < boosterPacksList.length; q++) {
+      if (packs[p] === boosterPacksList[q].id) {
+        if (p === 0) {
+          string = string + boosterPacksList[q].name
+        }
+        else {
+          string = string + ', ' + boosterPacksList[q].name
+        }
+      }
+    }
+  }
+  return string
+}
+
 function clearList() {
   var $existingList = $cardList.childNodes
   while ($existingList.length > 0) {
@@ -432,15 +422,47 @@ function clearList() {
   }
 }
 
-// Once the user presses the "Confirm Button", the card list will populate
-// according to the packs selected.
+// Populate booster packs list
+for (var i = 0; i < boosterPacksList.length; i++) {
+  $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
+}
+
+// Create Event Listeners for each button in the booster packs list
+var $buttons = document.querySelectorAll('.button-tiles')
+for (var j = 0; j < $buttons.length; j++) {
+  $buttons[j].addEventListener('click', function (event) {
+    // If booster pack is selected, the button's class is changed to
+    // 'pack-selected' and the selected booster pack is recorded into
+    // $selectedPacks array
+    if (event.currentTarget.getAttribute('class') === 'button-tiles') {
+      $selectedPacks.push(event.currentTarget.getAttribute('id'))
+      event.currentTarget.setAttribute('class', 'pack-selected')
+    }
+    else {
+      // If booster pack is unselected, the button's class returns to
+      // 'button-tiles' and the unselected booster pack is removed from
+      // $selectedPacks array.
+      for (var k = 0; k < $selectedPacks.length; k++) {
+        if (event.currentTarget.getAttribute('id') === $selectedPacks[k]) {
+          $selectedPacks.splice(k, 1)
+        }
+      }
+      event.currentTarget.setAttribute('class', 'button-tiles')
+    }
+  })
+}
+
+// Once the user presses the "CONFIRM" button, the card list will populate
+// according to the packs selected and the booster pack list will disappear.
 $confirm.addEventListener('click', function () {
   $boosterPacksSection.classList.add('hidden')
   $cardListSection.classList.remove('hidden')
+  $displayPacksSelected.classList.remove('hidden')
   $confirm.classList.add('hidden')
   $returnBpSection.classList.remove('hidden')
   clearList()
   $selectedPacks.sort()
+  $displayPacksSelected.textContent = displayPacks($selectedPacks)
   for (var l = 0; l < $selectedPacks.length; l++) {
     for (var m = 0; m < boosterPacksList.length; m++) {
       if ($selectedPacks[l] === boosterPacksList[m].id) {
@@ -452,9 +474,12 @@ $confirm.addEventListener('click', function () {
   }
 })
 
+// When the user presses the "RETURN" button, the user is brought back to the
+// booster pack list
 $returnBpSection.addEventListener('click', function () {
   $boosterPacksSection.classList.remove('hidden')
   $cardListSection.classList.add('hidden')
+  $displayPacksSelected.classList.add('hidden')
   $confirm.classList.remove('hidden')
   $returnBpSection.classList.add('hidden')
 })
