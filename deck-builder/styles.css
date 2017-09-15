@@ -6,6 +6,7 @@ body {
 }
 
 #booster-packs-section {
+  clear: both;
   width: 1140px;
   padding: 30px;
   background-color: rgba(192, 192, 192, 0.2);
@@ -34,8 +35,8 @@ body {
 }
 
 #confirm {
+  margin-left: 540px;
   width: 125px;
-  float: right;
   font-size: 20px;
   color: white;
   margin-bottom: 10;
@@ -44,8 +45,8 @@ body {
 }
 
 #return-bp-section {
+  margin-left: 540px;
   width: 125px;
-  float: right;
   font-size: 20px;
   color: white;
   margin-bottom: 10;
@@ -54,7 +55,6 @@ body {
 }
 
 #card-list-section {
-  clear: right;
   background-color: rgba(192, 192, 192, 0.2);
 }
 
