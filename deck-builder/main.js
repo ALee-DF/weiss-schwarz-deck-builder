@@ -426,23 +426,22 @@ for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
 
-var $buttons = document.querySelectorAll('.button-tiles')
-for (var j = 0; j < $buttons.length; j++) {
-  $buttons[j].addEventListener('click', function (event) {
-    if (event.currentTarget.getAttribute('class') === 'button-tiles') {
-      $selectedPacks.push(event.currentTarget.getAttribute('id'))
-      event.currentTarget.setAttribute('class', 'pack-selected')
+$boosterPacksSection.addEventListener('click', function (event) {
+  if (event.target.closest('button') !== null) {
+    if (event.target.closest('button').className === 'button-tiles') {
+      $selectedPacks.push(event.target.closest('button').id)
+      event.target.closest('button').setAttribute('class', 'pack-selected')
     }
-    else {
+    else if (event.target.closest('button').className === 'pack-selected') {
       for (var k = 0; k < $selectedPacks.length; k++) {
-        if (event.currentTarget.getAttribute('id') === $selectedPacks[k]) {
+        if (event.target.closest('button').id === $selectedPacks[k]) {
           $selectedPacks.splice(k, 1)
         }
       }
-      event.currentTarget.setAttribute('class', 'button-tiles')
+      event.target.closest('button').setAttribute('class', 'button-tiles')
     }
-  })
-}
+  }
+})
 
 $confirm.addEventListener('click', function () {
   if ($selectedPacks.length > 0) {
