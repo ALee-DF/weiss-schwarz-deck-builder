@@ -325,7 +325,9 @@ var boosterPacksList = [
 var $boosterPacksSection = document.querySelector('#booster-packs-section')
 var $cardListSection = document.querySelector('#card-list-section')
 var $cardList = document.querySelector('#card-list')
+var $displayPacksSelected = document.querySelector('#display-packs-selected')
 var $confirm = document.querySelector('#confirm')
+var $returnBpSection = document.querySelector('#return-bp-section')
 var $selectedPacks = []
 
 function renderPack(pack) {
@@ -435,6 +437,8 @@ function clearList() {
 $confirm.addEventListener('click', function () {
   $boosterPacksSection.classList.add('hidden')
   $cardListSection.classList.remove('hidden')
+  $confirm.classList.add('hidden')
+  $returnBpSection.classList.remove('hidden')
   clearList()
   $selectedPacks.sort()
   for (var l = 0; l < $selectedPacks.length; l++) {
@@ -446,4 +450,11 @@ $confirm.addEventListener('click', function () {
       }
     }
   }
+})
+
+$returnBpSection.addEventListener('click', function () {
+  $boosterPacksSection.classList.remove('hidden')
+  $cardListSection.classList.add('hidden')
+  $confirm.classList.remove('hidden')
+  $returnBpSection.classList.add('hidden')
 })
