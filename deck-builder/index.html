@@ -12,8 +12,26 @@
       <a href=""><img src="weiss-schwarz-logo.png"
         alt="Weiss Schwarz Logo" /></a>
     </header>
-    <h1>Please Select Your Packs</h1>
+    <h1>
+      <button id="confirm">CONFIRM</button>
+      <button id="return-bp-section" class="hidden">RETURN</button>
+    </h1>
+    <h1 id="display-packs-selected" class="hidden"></h1>
     <section id="booster-packs-section">
+    </section>
+    <section id="card-list-section" class="hidden">
+      <table>
+        <thead>
+          <tr>
+            <th id="card-illustration"></th>
+            <th id="card-numbers">Card Number</th>
+            <th id="card-types">Card Type</th>
+            <th>Card Name</th>
+            <th id="color">Color</th>
+          </tr>
+        </thead>
+        <tbody id="card-list"></tbody>
+      </table>
     </section>
     <script src="main.js"></script>
   </body>
