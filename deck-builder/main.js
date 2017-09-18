@@ -1045,10 +1045,10 @@ var $climaxCounter = document.querySelector('#climax-counter')
 var $cardCounter = document.querySelector('#card-counter')
 var $confirm = document.querySelector('#confirm')
 var $returnBpSection = document.querySelector('#return-bp-section')
-var $selectedPacks = []
-var $deckList = []
-var $uniqueCards = {}
-var $climaxCardCounter = 0
+var selectedPacks = []
+var deckList = []
+var uniqueCards = {}
+var climaxCardCounter = 0
 
 function renderPack(pack) {
   var $pack = document.createElement('button')
@@ -1140,41 +1140,49 @@ function clearList() {
 }
 
 function addCard(card) {
-  if ($deckList.length < 50) {
-    for (var i = 0; i < boosterPacksList.length; i++) {
-      if (card.class === boosterPacksList[i].id) {
-        for (var j = 0; j < boosterPacksList[i].cards.length; j++) {
-          if (card.cardNumber === boosterPacksList[i].cards[j].id) {
-            var targetCard = boosterPacksList[i].cards[j]
-            if (targetCard.cardType !== 'Climax') {
-              if ($uniqueCards.hasOwnProperty(targetCard.cardName)) {
-                if ($uniqueCards[targetCard.cardName] < 4) {
-                  $deckList.push(targetCard)
-                  $uniqueCards[targetCard.cardName] = $uniqueCards[targetCard.cardName] + 1
-                }
-              }
-              else {
-                $uniqueCards[targetCard.cardName] = 1
-                $deckList.push(targetCard)
-              }
-            }
-            else if ((targetCard.cardType === 'Climax') && ($climaxCardCounter < 8)) {
-              if ($uniqueCards.hasOwnProperty(targetCard.cardName)) {
-                if ($uniqueCards[targetCard.cardName] < 4) {
-                  $climaxCardCounter++
-                  $deckList.push(targetCard)
-                  $uniqueCards[targetCard.cardName] = $uniqueCards[targetCard.cardName] + 1
-                }
-              }
-              else {
-                $uniqueCards[targetCard.cardName] = 1
-                $deckList.push(targetCard)
-                $climaxCardCounter++
-              }
-            }
-          }
-        }
+  if (deckList.length === 50) {
+    return
+  }
+
+  var allCards = []
+  for (var i = 0; i < boosterPacksList.length; i++) {
+    if (card.class === boosterPacksList[i].id) {
+      for (var j = 0; j < boosterPacksList[i].cards.length; j++) {
+        allCards = allCards.concat(boosterPacksList[i].cards[j])
       }
+    }
+  }
+
+  for (var k = 0; k < allCards.length; k++) {
+    if (card.cardNumber === allCards[k].id) {
+      var targetCard = allCards[k]
+    }
+  }
+
+  if (targetCard.cardType !== 'Climax') {
+    if (uniqueCards.hasOwnProperty(targetCard.cardName)) {
+      if (uniqueCards[targetCard.cardName] < 4) {
+        uniqueCards[targetCard.cardName] = uniqueCards[targetCard.cardName] + 1
+        deckList.push(targetCard)
+      }
+    }
+    else {
+      uniqueCards[targetCard.cardName] = 1
+      deckList.push(targetCard)
+    }
+  }
+  else if ((targetCard.cardType === 'Climax') && (climaxCardCounter < 8)) {
+    if (uniqueCards.hasOwnProperty(targetCard.cardName)) {
+      if (uniqueCards[targetCard.cardName] < 4) {
+        climaxCardCounter++
+        uniqueCards[targetCard.cardName] = uniqueCards[targetCard.cardName] + 1
+        deckList.push(targetCard)
+      }
+    }
+    else {
+      uniqueCards[targetCard.cardName] = 1
+      deckList.push(targetCard)
+      climaxCardCounter++
     }
   }
 }
@@ -1184,19 +1192,19 @@ function deckCounter() {
   var eventCounter = 0
   var climaxCounter = 0
 
-  for (var i = 0; i < $deckList.length; i++) {
-    if ($deckList[i].cardType === 'Character') {
+  for (var i = 0; i < deckList.length; i++) {
+    if (deckList[i].cardType === 'Character') {
       characterCounter++
     }
-    else if ($deckList[i].cardType === 'Event') {
+    else if (deckList[i].cardType === 'Event') {
       eventCounter++
     }
-    else if ($deckList[i].cardType === 'Climax') {
+    else if (deckList[i].cardType === 'Climax') {
       climaxCounter++
     }
   }
   var deckInfo = {
-    cardCount: $deckList.length,
+    cardCount: deckList.length,
     characterCount: characterCounter,
     eventCount: eventCounter,
     climaxCount: climaxCounter
@@ -1211,13 +1219,13 @@ for (var i = 0; i < boosterPacksList.length; i++) {
 $boosterPacksSection.addEventListener('click', function (event) {
   if (event.target.closest('button') !== null) {
     if (event.target.closest('button').className === 'button-tiles') {
-      $selectedPacks.push(event.target.closest('button').id)
+      selectedPacks.push(event.target.closest('button').id)
       event.target.closest('button').setAttribute('class', 'pack-selected')
     }
     else if (event.target.closest('button').className === 'pack-selected') {
-      for (var k = 0; k < $selectedPacks.length; k++) {
-        if (event.target.closest('button').id === $selectedPacks[k]) {
-          $selectedPacks.splice(k, 1)
+      for (var k = 0; k < selectedPacks.length; k++) {
+        if (event.target.closest('button').id === selectedPacks[k]) {
+          selectedPacks.splice(k, 1)
         }
       }
       event.target.closest('button').setAttribute('class', 'button-tiles')
@@ -1226,7 +1234,7 @@ $boosterPacksSection.addEventListener('click', function (event) {
 })
 
 $confirm.addEventListener('click', function () {
-  if ($selectedPacks.length > 0) {
+  if (selectedPacks.length > 0) {
     $boosterPacksSection.classList.add('hidden')
     $cardListSection.classList.remove('hidden')
     $displayPacksSelected.classList.remove('hidden')
@@ -1234,11 +1242,11 @@ $confirm.addEventListener('click', function () {
     $confirm.classList.add('hidden')
     $returnBpSection.classList.remove('hidden')
     clearList()
-    $selectedPacks.sort()
-    $displayPacksSelected.textContent = displayPacks($selectedPacks)
-    for (var l = 0; l < $selectedPacks.length; l++) {
+    selectedPacks.sort()
+    $displayPacksSelected.textContent = displayPacks(selectedPacks)
+    for (var l = 0; l < selectedPacks.length; l++) {
       for (var m = 0; m < boosterPacksList.length; m++) {
-        if ($selectedPacks[l] === boosterPacksList[m].id) {
+        if (selectedPacks[l] === boosterPacksList[m].id) {
           for (var n = 0; n < boosterPacksList[m].cards.length; n++) {
             $cardList.appendChild(renderCard(boosterPacksList[m].cards[n]))
           }
