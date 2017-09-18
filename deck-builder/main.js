@@ -1047,7 +1047,7 @@ var $confirm = document.querySelector('#confirm')
 var $returnBpSection = document.querySelector('#return-bp-section')
 var $selectedPacks = []
 var $deckList = []
-var $uniqueCardList = []
+var $uniqueCards = {}
 var $climaxCardCounter = 0
 
 function renderPack(pack) {
@@ -1139,6 +1139,71 @@ function clearList() {
   }
 }
 
+function addCard(card) {
+  if ($deckList.length < 50) {
+    for (var i = 0; i < boosterPacksList.length; i++) {
+      if (card.class === boosterPacksList[i].id) {
+        for (var j = 0; j < boosterPacksList[i].cards.length; j++) {
+          if (card.cardNumber === boosterPacksList[i].cards[j].id) {
+            var targetCard = boosterPacksList[i].cards[j]
+            if (targetCard.cardType !== 'Climax') {
+              if ($uniqueCards.hasOwnProperty(targetCard.cardName)) {
+                if ($uniqueCards[targetCard.cardName] < 4) {
+                  $deckList.push(targetCard)
+                  $uniqueCards[targetCard.cardName] = $uniqueCards[targetCard.cardName] + 1
+                }
+              }
+              else {
+                $uniqueCards[targetCard.cardName] = 1
+                $deckList.push(targetCard)
+              }
+            }
+            else if ((targetCard.cardType === 'Climax') && ($climaxCardCounter < 8)) {
+              if ($uniqueCards.hasOwnProperty(targetCard.cardName)) {
+                if ($uniqueCards[targetCard.cardName] < 4) {
+                  $climaxCardCounter++
+                  $deckList.push(targetCard)
+                  $uniqueCards[targetCard.cardName] = $uniqueCards[targetCard.cardName] + 1
+                }
+              }
+              else {
+                $uniqueCards[targetCard.cardName] = 1
+                $deckList.push(targetCard)
+                $climaxCardCounter++
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function deckCounter() {
+  var characterCounter = 0
+  var eventCounter = 0
+  var climaxCounter = 0
+
+  for (var i = 0; i < $deckList.length; i++) {
+    if ($deckList[i].cardType === 'Character') {
+      characterCounter++
+    }
+    else if ($deckList[i].cardType === 'Event') {
+      eventCounter++
+    }
+    else if ($deckList[i].cardType === 'Climax') {
+      climaxCounter++
+    }
+  }
+  var deckInfo = {
+    cardCount: $deckList.length,
+    characterCount: characterCounter,
+    eventCount: eventCounter,
+    climaxCount: climaxCounter
+  }
+  return deckInfo
+}
+
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
@@ -1206,49 +1271,3 @@ $cardList.addEventListener('click', function (event) {
   $climaxCounter.textContent = deckCount.climaxCount
   $cardCounter.textContent = deckCount.cardCount + '/50'
 })
-
-function addCard(card) {
-  if ($deckList.length < 50) {
-    for (var i = 0; i < boosterPacksList.length; i++) {
-      if (card.class === boosterPacksList[i].id) {
-        for (var j = 0; j < boosterPacksList[i].cards.length; j++) {
-          if (card.cardNumber === boosterPacksList[i].cards[j].id) {
-            var targetCard = boosterPacksList[i].cards[j]
-            if (targetCard.cardType !== 'Climax') {
-              $deckList.push(targetCard)
-            }
-            else if ((targetCard.cardType === 'Climax') && ($climaxCardCounter < 8)) {
-              $climaxCardCounter++
-              $deckList.push(targetCard)
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-function deckCounter() {
-  var characterCounter = 0
-  var eventCounter = 0
-  var climaxCounter = 0
-
-  for (var i = 0; i < $deckList.length; i++) {
-    if ($deckList[i].cardType === 'Character') {
-      characterCounter++
-    }
-    else if ($deckList[i].cardType === 'Event') {
-      eventCounter++
-    }
-    else if ($deckList[i].cardType === 'Climax') {
-      climaxCounter++
-    }
-  }
-  var deckInfo = {
-    cardCount: $deckList.length,
-    characterCount: characterCounter,
-    eventCount: eventCounter,
-    climaxCount: climaxCounter
-  }
-  return deckInfo
-}
