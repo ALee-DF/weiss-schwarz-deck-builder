@@ -5,6 +5,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 header {
   width: 1200px;
   background-color: rgb(40, 40, 40);
