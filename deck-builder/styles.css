@@ -1,15 +1,39 @@
 body {
   width: 1200px;
   margin: 0 auto;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(243, 243, 243);
   font-family: 'Open Sans', sans-serif;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+header {
+  width: 1200px;
+  background-color: rgb(40, 40, 40);
+  position: fixed;
+}
+
+#card-count-section {
+  float: right;
+  color: white;
+}
+
+.deck-column-1-of-4,
+.deck-column-2-of-4,
+.deck-column-3-of-4,
+.deck-column-4-of-4 {
+  width: 100px;
+  float: left;
+  text-align: center;
 }
 
 #booster-packs-section {
   clear: both;
   width: 1140px;
   padding: 30px;
-  background-color: rgba(192, 192, 192, 0.2);
+  background-color: rgb(255, 255, 255);
 }
 
 .booster-pack-icon {
@@ -35,17 +59,19 @@ body {
 }
 
 #confirm {
+  margin-top: 100px;
   margin-left: 540px;
   width: 125px;
   font-size: 20px;
   color: white;
   margin-bottom: 10;
   padding: 10px;
-  background-color: limegreen;
+  background-color: Blue;
 }
 
 #return-bp-section {
   margin-left: 540px;
+  margin-top: 100px;
   width: 125px;
   font-size: 20px;
   color: white;
@@ -55,7 +81,7 @@ body {
 }
 
 #card-list-section {
-  background-color: rgba(192, 192, 192, 0.2);
+  background-color: rgb(255, 255, 255);
 }
 
 .card-preview {
@@ -86,7 +112,7 @@ th {
 td {
   font-size: 20px;
   line-height: 10px;
-  padding: 10px;
+  padding: 5px;
 }
 
 #card-illustration {
