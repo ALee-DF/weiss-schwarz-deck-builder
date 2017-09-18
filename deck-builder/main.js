@@ -1048,6 +1048,7 @@ var $returnBpSection = document.querySelector('#return-bp-section')
 var $selectedPacks = []
 var $deckList = []
 var $uniqueCardList = []
+var $climaxCardCounter = 0
 
 function renderPack(pack) {
   var $pack = document.createElement('button')
@@ -1213,7 +1214,13 @@ function addCard(card) {
         for (var j = 0; j < boosterPacksList[i].cards.length; j++) {
           if (card.cardNumber === boosterPacksList[i].cards[j].id) {
             var targetCard = boosterPacksList[i].cards[j]
-            $deckList.push(targetCard)
+            if (targetCard.cardType !== 'Climax') {
+              $deckList.push(targetCard)
+            }
+            else if ((targetCard.cardType === 'Climax') && ($climaxCardCounter < 8)) {
+              $climaxCardCounter++
+              $deckList.push(targetCard)
+            }
           }
         }
       }
