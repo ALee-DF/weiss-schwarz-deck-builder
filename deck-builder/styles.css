@@ -7,8 +7,22 @@ body {
 
 header {
   width: 1200px;
-  background-color: rgb(20, 20, 20);
+  background-color: rgb(40, 40, 40);
   position: fixed;
+}
+
+#card-count-section {
+  float: right;
+  color: white;
+}
+
+.deck-column-1-of-4,
+.deck-column-2-of-4,
+.deck-column-3-of-4,
+.deck-column-4-of-4 {
+  width: 100px;
+  float: left;
+  text-align: center;
 }
 
 #booster-packs-section {

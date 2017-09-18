@@ -1038,6 +1038,11 @@ var $boosterPacksSection = document.querySelector('#booster-packs-section')
 var $displayPacksSelected = document.querySelector('#display-packs-selected')
 var $cardListSection = document.querySelector('#card-list-section')
 var $cardList = document.querySelector('#card-list')
+var $cardCountSection = document.querySelector('#card-count-section')
+var $characterCounter = document.querySelector('#character-counter')
+var $eventCounter = document.querySelector('#event-counter')
+var $climaxCounter = document.querySelector('#climax-counter')
+var $cardCounter = document.querySelector('#card-counter')
 var $confirm = document.querySelector('#confirm')
 var $returnBpSection = document.querySelector('#return-bp-section')
 var $selectedPacks = []
@@ -1158,6 +1163,7 @@ $confirm.addEventListener('click', function () {
     $boosterPacksSection.classList.add('hidden')
     $cardListSection.classList.remove('hidden')
     $displayPacksSelected.classList.remove('hidden')
+    $cardCountSection.classList.remove('hidden')
     $confirm.classList.add('hidden')
     $returnBpSection.classList.remove('hidden')
     clearList()
@@ -1179,13 +1185,29 @@ $returnBpSection.addEventListener('click', function () {
   $boosterPacksSection.classList.remove('hidden')
   $cardListSection.classList.add('hidden')
   $displayPacksSelected.classList.add('hidden')
+  $cardCountSection.classList.add('hidden')
   $confirm.classList.remove('hidden')
   $returnBpSection.classList.add('hidden')
 })
 
 $cardList.addEventListener('click', function (event) {
   if (event.target.closest('tr') !== null) {
-    var $cardNumber = event.target.closest('tr').id
-    $deckList.push($cardNumber)
+    var $card = {
+      cardNumber: event.target.closest('tr').id,
+      class: event.target.closest('tr').className
+    }
   }
+  var $deck = addCard($card)
+  $cardCounter.textContent = $deck.cardCount + '/50'
 })
+
+function addCard(card) {
+  if ($deckList.length < 50) {
+    $deckList.push(card)
+  }
+
+  var deck = {
+    cardCount: $deckList.length
+  }
+  return deck
+}
