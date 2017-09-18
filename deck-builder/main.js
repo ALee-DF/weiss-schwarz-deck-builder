@@ -1047,6 +1047,7 @@ var $confirm = document.querySelector('#confirm')
 var $returnBpSection = document.querySelector('#return-bp-section')
 var $selectedPacks = []
 var $deckList = []
+var $uniqueCardList = []
 
 function renderPack(pack) {
   var $pack = document.createElement('button')
@@ -1197,17 +1198,50 @@ $cardList.addEventListener('click', function (event) {
       class: event.target.closest('tr').className
     }
   }
-  var $deck = addCard($card)
-  $cardCounter.textContent = $deck.cardCount + '/50'
+  addCard($card)
+  var deckCount = deckCounter()
+  $characterCounter.textContent = deckCount.characterCount
+  $eventCounter.textContent = deckCount.eventCount
+  $climaxCounter.textContent = deckCount.climaxCount
+  $cardCounter.textContent = deckCount.cardCount + '/50'
 })
 
 function addCard(card) {
   if ($deckList.length < 50) {
-    $deckList.push(card)
+    for (var i = 0; i < boosterPacksList.length; i++) {
+      if (card.class === boosterPacksList[i].id) {
+        for (var j = 0; j < boosterPacksList[i].cards.length; j++) {
+          if (card.cardNumber === boosterPacksList[i].cards[j].id) {
+            var targetCard = boosterPacksList[i].cards[j]
+            $deckList.push(targetCard)
+          }
+        }
+      }
+    }
   }
+}
 
-  var deck = {
-    cardCount: $deckList.length
+function deckCounter() {
+  var characterCounter = 0
+  var eventCounter = 0
+  var climaxCounter = 0
+
+  for (var i = 0; i < $deckList.length; i++) {
+    if ($deckList[i].cardType === 'Character') {
+      characterCounter++
+    }
+    else if ($deckList[i].cardType === 'Event') {
+      eventCounter++
+    }
+    else if ($deckList[i].cardType === 'Climax') {
+      climaxCounter++
+    }
   }
-  return deck
+  var deckInfo = {
+    cardCount: $deckList.length,
+    characterCount: characterCounter,
+    eventCount: eventCounter,
+    climaxCount: climaxCounter
+  }
+  return deckInfo
 }
