@@ -1041,6 +1041,7 @@ var $cardList = document.querySelector('#card-list')
 var $confirm = document.querySelector('#confirm')
 var $returnBpSection = document.querySelector('#return-bp-section')
 var $selectedPacks = []
+var $deckList = []
 
 function renderPack(pack) {
   var $pack = document.createElement('button')
@@ -1184,6 +1185,7 @@ $returnBpSection.addEventListener('click', function () {
 
 $cardList.addEventListener('click', function (event) {
   if (event.target.closest('tr') !== null) {
-    console.log(event.target.closest('tr'))
+    var $cardNumber = event.target.closest('tr').id
+    $deckList.push($cardNumber)
   }
 })
