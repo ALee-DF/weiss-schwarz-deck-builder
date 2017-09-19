@@ -199,3 +199,7 @@ td {
 .hidden {
   display: none;
 }
+
+#deck-list-section {
+  background-color: rgb(255, 255, 255);
+}
