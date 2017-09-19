@@ -68,8 +68,8 @@ header {
   position: relative;
   left: 65px;
   bottom: 30px;
-  width: 125px;
-  font-size: 18px;
+  width: 130px;
+  font-size: 16px;
   color: white;
   padding: 10px;
   background-color: Blue;
@@ -79,8 +79,8 @@ header {
   position: relative;
   left: 65px;
   bottom: 30px;
-  width: 125px;
-  font-size: 18px;
+  width: 130px;
+  font-size: 16px;
   color: white;
   padding: 10px;
   background-color: red;
@@ -90,8 +90,19 @@ header {
   position: relative;
   left: 65px;
   bottom: 30px;
-  width: 125px;
-  font-size: 18px;
+  width: 130px;
+  font-size: 16px;
+  color: white;
+  padding: 10px;
+  background-color: green;
+}
+
+#view-card {
+  position: relative;
+  left: 200px;
+  bottom: 30px;
+  width: 130px;
+  font-size: 16px;
   color: white;
   padding: 10px;
   background-color: green;
@@ -201,5 +212,55 @@ td {
 }
 
 #deck-list-section {
+  margin: 0;
+  padding: 100px 20px 20px;
   background-color: rgb(255, 255, 255);
+}
+
+.full-card-illustration {
+  width: 220px;
+  height: 308px;
+}
+
+.full-climax-card-illustration {
+  width: 308px;
+  height: 220px;
+}
+
+.card-icons {
+  display: inline-block;
+  width: 220px;
+  height: 360px;
+  margin: 1px;
+  padding: 7px;
+  background-color: white;
+  box-shadow: 0 3px 5px black;
+  text-align: center;
+}
+
+.climax-card-icons {
+  display: inline-block;
+  width: 308;
+  height: 270px;
+  margin: 1px;
+  padding: 7px;
+  background-color: white;
+  box-shadow: 0 3px 5px black;
+  text-align: center;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 14px;
+}
+
+.select-bar {
+  margin-top: 3px;
+  height: 25px;
+  width: 50px;
+  font-size: 15px;
+}
+
+.deck-headers {
+  border-bottom: ridge;
 }
