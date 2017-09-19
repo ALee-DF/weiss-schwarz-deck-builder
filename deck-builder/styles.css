@@ -10,6 +10,7 @@ html {
 }
 
 header {
+  height: 100px;
   width: 1200px;
   background-color: rgb(40, 40, 40);
   position: fixed;
@@ -30,9 +31,8 @@ header {
 }
 
 #booster-packs-section {
-  clear: both;
+  padding: 130px 30px 30px;
   width: 1140px;
-  padding: 30px;
   background-color: rgb(255, 255, 255);
 }
 
@@ -59,25 +59,41 @@ header {
 }
 
 #confirm {
-  margin-top: 100px;
-  margin-left: 540px;
+  position: relative;
+  left: 170px;
+  bottom: 30px;
   width: 125px;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
-  margin-bottom: 10;
   padding: 10px;
   background-color: Blue;
 }
 
 #return-bp-section {
-  margin-left: 540px;
-  margin-top: 100px;
+  position: relative;
+  left: 170px;
+  bottom: 30px;
   width: 125px;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
-  margin-bottom: 10;
   padding: 10px;
   background-color: red;
+}
+
+#view-deck {
+  position: relative;
+  left: 170px;
+  bottom: 30px;
+  width: 125px;
+  font-size: 18px;
+  color: white;
+  padding: 10px;
+  background-color: green;
+}
+
+#display-packs-selected {
+  padding-top: 130px;
+  margin: 0;
 }
 
 #card-list-section {
