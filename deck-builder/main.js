@@ -260,7 +260,28 @@ $cardList.addEventListener('click', function (event) {
 
   if (fullCardInfo !== null) {
     if (uniqueCardNumbers.hasOwnProperty(fullCardInfo.id)) {
-      console.log('Card Already in the List. Update Number')
+      var $selectElementsList = document.querySelectorAll('select')
+      for (var i = 0; i < $selectElementsList.length; i++) {
+        if ($selectElementsList[i].hasAttribute('card-number')) {
+          if ($selectElementsList[i].getAttribute('card-number') === fullCardInfo.id) {
+            var $targetSelectElement = $selectElementsList[i]
+          }
+        }
+      }
+
+      if (uniqueCardNumbers[fullCardInfo.id] === 1) {
+        $targetSelectElement.options[1].removeAttribute('selected')
+        $targetSelectElement.options[2].setAttribute('selected', '')
+      }
+      else if (uniqueCardNumbers[fullCardInfo.id] === 2) {
+        $targetSelectElement.options[2].removeAttribute('selected')
+        $targetSelectElement.options[3].setAttribute('selected', '')
+      }
+      else if (uniqueCardNumbers[fullCardInfo.id] === 3) {
+        $targetSelectElement.options[3].removeAttribute('selected')
+        $targetSelectElement.options[4].setAttribute('selected', '')
+      }
+      uniqueCardNumbers[fullCardInfo.id] = uniqueCardNumbers[fullCardInfo.id] + 1
     }
     else {
       uniqueCardNumbers[fullCardInfo.id] = 1
@@ -325,6 +346,7 @@ function renderDeckListCard(card) {
   $option4.value = 4
   $option4.textContent = 4
 
+  $select.setAttribute('card-number', card.id)
   $select.className = 'select-bar'
   $select.appendChild($option0)
   $select.appendChild($option1)
