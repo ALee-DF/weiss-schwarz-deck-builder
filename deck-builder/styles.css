@@ -1,5 +1,5 @@
 body {
-  width: 1200px;
+  width: 1000px;
   margin: 0 auto;
   background-image: url('confrontation.png');
   background-position: center top;
@@ -16,7 +16,7 @@ html {
 
 header {
   height: 100px;
-  width: 1200px;
+  width: 1000px;
   background-color: rgb(40, 40, 40);
   position: fixed;
 }
@@ -30,42 +30,43 @@ header {
 .deck-column-2-of-4,
 .deck-column-3-of-4,
 .deck-column-4-of-4 {
-  width: 100px;
+  width: 90px;
   float: left;
   text-align: center;
 }
 
 #booster-packs-section {
-  padding: 130px 30px 30px;
-  width: 1140px;
+  padding: 120px 30px 30px;
+  width: 940px;
   background-color: rgb(255, 255, 255);
 }
 
 .booster-pack-icon {
-  width: 200px;
-  height: 400px;
+  width: 170px;
+  height: 340px;
 }
 
 .button-tiles {
   margin: 2px;
-  padding: 10px;
+  padding: 5px;
   background-color: white;
 }
 
 .pack-title {
   margin: 0;
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .pack-selected {
   margin: 2px;
-  padding: 10px;
+  padding: 5px;
   background-color: deepskyblue;
 }
 
 #confirm {
   position: relative;
-  left: 170px;
+  left: 65px;
   bottom: 30px;
   width: 125px;
   font-size: 18px;
@@ -76,7 +77,7 @@ header {
 
 #return-bp-section {
   position: relative;
-  left: 170px;
+  left: 65px;
   bottom: 30px;
   width: 125px;
   font-size: 18px;
@@ -87,7 +88,7 @@ header {
 
 #view-deck {
   position: relative;
-  left: 170px;
+  left: 65px;
   bottom: 30px;
   width: 125px;
   font-size: 18px;
@@ -97,8 +98,11 @@ header {
 }
 
 #display-packs-selected {
-  padding-top: 130px;
+  padding-top: 110px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 0;
+  background-color: rgb(255, 255, 255);
 }
 
 #card-list-section {
@@ -123,7 +127,7 @@ td {
 
 table {
   border-collapse: collapse;
-  width: 1200px;
+  width: 1000px;
 }
 
 th {
