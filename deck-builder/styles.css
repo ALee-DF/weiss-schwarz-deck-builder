@@ -1,6 +1,11 @@
 body {
   width: 1200px;
   margin: 0 auto;
+  background-image: url('confrontation.png');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 135%;
   background-color: rgb(243, 243, 243);
   font-family: 'Open Sans', sans-serif;
 }
