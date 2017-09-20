@@ -233,6 +233,7 @@ function renderDeckListCard(card) {
   $option4.textContent = 4
 
   $select.setAttribute('card-number', card.id)
+  $select.setAttribute('pack', card.class)
   $select.className = 'select-bar'
   $select.appendChild($option0)
   $select.appendChild($option1)
@@ -375,5 +376,22 @@ $return.addEventListener('click', function () {
 
 $deckListSection.addEventListener('change', function (event) {
   var $targetSelectElement = event.target
-  console.log($targetSelectElement)
+  var selectedIndex = event.target.selectedIndex
+
+  if (selectedIndex === 0) {
+    $targetSelectElement.parentNode.remove()
+  }
+  else {
+    updateDeck($targetSelectElement)
+  }
 })
+
+function updateDeck(selectElement) {
+  var cardNumber = selectElement.getAttribute('card-number')
+  var pack = selectElement.getAttribute('pack')
+  var selectedIndex = selectElement.selectedIndex
+
+  console.log(cardNumber)
+  console.log(pack)
+  console.log(selectedIndex)
+}
