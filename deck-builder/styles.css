@@ -64,10 +64,15 @@ header {
   background-color: deepskyblue;
 }
 
-#confirm {
+#cards-and-packs-buttons {
+  display: inline-block;
+  background-color: red;
   position: relative;
   left: 65px;
   bottom: 30px;
+}
+
+#confirm {
   width: 130px;
   font-size: 16px;
   color: white;
@@ -76,9 +81,6 @@ header {
 }
 
 #return-bp-section {
-  position: relative;
-  left: 65px;
-  bottom: 30px;
   width: 130px;
   font-size: 16px;
   color: white;
@@ -99,7 +101,7 @@ header {
 
 #view-card {
   position: relative;
-  left: 200px;
+  left: 65px;
   bottom: 30px;
   width: 130px;
   font-size: 16px;
@@ -209,6 +211,10 @@ td {
 
 .hidden {
   display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 #deck-list-section {

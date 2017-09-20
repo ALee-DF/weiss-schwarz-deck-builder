@@ -4,6 +4,8 @@ var $boosterPacksSection = document.querySelector('#booster-packs-section')
 var $displayPacksSelected = document.querySelector('#display-packs-selected')
 var $cardListSection = document.querySelector('#card-list-section')
 var $deckListSection = document.querySelector('#deck-list-section')
+var $boosterPackAndCardListSection = document.querySelector('#booster-pack-and-card-list-section')
+var $cardsAndPacksButtons = document.querySelector('#cards-and-packs-buttons')
 var $cardList = document.querySelector('#card-list')
 var $cardCountSection = document.querySelector('#card-count-section')
 var $characterCounter = document.querySelector('#character-counter')
@@ -310,65 +312,63 @@ $cardList.addEventListener('click', function (event) {
   $climaxCounter.textContent = deckCount.climaxCount
   $cardCounter.textContent = deckCount.cardCount + '/50'
 
-  if (fullCardInfo !== null) {
-    if (uniqueCardNumbers.hasOwnProperty(fullCardInfo.id)) {
-      var $selectElementsList = document.querySelectorAll('select')
-      for (var i = 0; i < $selectElementsList.length; i++) {
-        if ($selectElementsList[i].hasAttribute('card-number')) {
-          if ($selectElementsList[i].getAttribute('card-number') === fullCardInfo.id) {
-            var $targetSelectElement = $selectElementsList[i]
-          }
+  if (fullCardInfo === null) {
+    return
+  }
+  if (uniqueCardNumbers.hasOwnProperty(fullCardInfo.id)) {
+    var $selectElementsList = document.querySelectorAll('select')
+    for (var i = 0; i < $selectElementsList.length; i++) {
+      if ($selectElementsList[i].hasAttribute('card-number')) {
+        if ($selectElementsList[i].getAttribute('card-number') === fullCardInfo.id) {
+          var $targetSelectElement = $selectElementsList[i]
         }
       }
-
-      if (uniqueCardNumbers[fullCardInfo.id] === 1) {
-        $targetSelectElement.options[1].removeAttribute('selected')
-        $targetSelectElement.options[2].setAttribute('selected', '')
-      }
-      else if (uniqueCardNumbers[fullCardInfo.id] === 2) {
-        $targetSelectElement.options[2].removeAttribute('selected')
-        $targetSelectElement.options[3].setAttribute('selected', '')
-      }
-      else if (uniqueCardNumbers[fullCardInfo.id] === 3) {
-        $targetSelectElement.options[3].removeAttribute('selected')
-        $targetSelectElement.options[4].setAttribute('selected', '')
-      }
-      uniqueCardNumbers[fullCardInfo.id] = uniqueCardNumbers[fullCardInfo.id] + 1
     }
-    else {
-      uniqueCardNumbers[fullCardInfo.id] = 1
-      var levels = [$level0, $level1, $level2, $level3]
-      if (fullCardInfo.cardType === 'Character') {
-        levels[fullCardInfo.level].appendChild(renderDeckListCard(fullCardInfo))
-      }
-      else if (fullCardInfo.cardType === 'Event') {
-        $event.appendChild(renderDeckListCard(fullCardInfo))
-      }
-      else if (fullCardInfo.cardType === 'Climax') {
-        $climax.appendChild(renderDeckListCard(fullCardInfo))
-      }
+
+    if (uniqueCardNumbers[fullCardInfo.id] === 1) {
+      $targetSelectElement.options[1].removeAttribute('selected')
+      $targetSelectElement.options[2].setAttribute('selected', '')
+    }
+    else if (uniqueCardNumbers[fullCardInfo.id] === 2) {
+      $targetSelectElement.options[2].removeAttribute('selected')
+      $targetSelectElement.options[3].setAttribute('selected', '')
+    }
+    else if (uniqueCardNumbers[fullCardInfo.id] === 3) {
+      $targetSelectElement.options[3].removeAttribute('selected')
+      $targetSelectElement.options[4].setAttribute('selected', '')
+    }
+    uniqueCardNumbers[fullCardInfo.id] = uniqueCardNumbers[fullCardInfo.id] + 1
+  }
+  else {
+    uniqueCardNumbers[fullCardInfo.id] = 1
+    var levels = [$level0, $level1, $level2, $level3]
+    if (fullCardInfo.cardType === 'Character') {
+      levels[fullCardInfo.level].appendChild(renderDeckListCard(fullCardInfo))
+    }
+    else if (fullCardInfo.cardType === 'Event') {
+      $event.appendChild(renderDeckListCard(fullCardInfo))
+    }
+    else if (fullCardInfo.cardType === 'Climax') {
+      $climax.appendChild(renderDeckListCard(fullCardInfo))
     }
   }
+
 })
 
 $viewDeck.addEventListener('click', function () {
   if (deckList.length > 0) {
-    $boosterPacksSection.classList.add('hidden')
-    $cardListSection.classList.add('hidden')
+    $boosterPackAndCardListSection.classList.add('hidden')
     $deckListSection.classList.remove('hidden')
-    $displayPacksSelected.classList.add('hidden')
-    $confirm.classList.add('hidden')
-    $returnBpSection.classList.add('hidden')
+    $cardsAndPacksButtons.classList.add('invisible')
     $viewDeck.classList.add('hidden')
     $viewCard.classList.remove('hidden')
   }
 })
 
 $viewCard.addEventListener('click', function () {
-  $cardListSection.classList.remove('hidden')
+  $boosterPackAndCardListSection.classList.remove('hidden')
   $deckListSection.classList.add('hidden')
-  $displayPacksSelected.classList.remove('hidden')
-  $returnBpSection.classList.remove('hidden')
+  $cardsAndPacksButtons.classList.remove('invisible')
   $viewDeck.classList.remove('hidden')
   $viewCard.classList.add('hidden')
 })
