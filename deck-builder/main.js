@@ -117,11 +117,7 @@ function clearList() {
   }
 }
 
-function addCard(card) {
-  if (deckList.length === 50) {
-    return null
-  }
-
+function searchCardInfo(card) {
   var allCards = []
   for (var i = 0; i < boosterPacksList.length; i++) {
     if (card.class === boosterPacksList[i].id) {
@@ -136,6 +132,15 @@ function addCard(card) {
       var targetCard = allCards[k]
     }
   }
+  return targetCard
+}
+
+function addCard(card) {
+  if (deckList.length === 50) {
+    return null
+  }
+
+  var targetCard = searchCardInfo(card)
 
   if (targetCard.cardType !== 'Climax') {
     if (uniqueCardNames.hasOwnProperty(targetCard.cardName)) {
@@ -377,14 +382,41 @@ $return.addEventListener('click', function () {
 $deckListSection.addEventListener('change', function (event) {
   var $targetSelectElement = event.target
   var selectedIndex = event.target.selectedIndex
-
+  var $card = {
+    cardNumber: $targetSelectElement.getAttribute('card-number'),
+    class: $targetSelectElement.getAttribute('pack')
+  }
+  var fullCardInfo = searchCardInfo($card)
   if (selectedIndex === 0) {
     $targetSelectElement.parentNode.remove()
+    removeCardInDeck(fullCardInfo)
+    var deckCount = deckCounter()
+    $characterCounter.textContent = deckCount.characterCount
+    $eventCounter.textContent = deckCount.eventCount
+    $climaxCounter.textContent = deckCount.climaxCount
+    $cardCounter.textContent = deckCount.cardCount + '/50'
   }
   else {
     updateDeck($targetSelectElement)
   }
 })
+
+function removeCardInDeck(card) {
+  var previousNumCopy = uniqueCardNumbers[card.id]
+  delete uniqueCardNumbers[card.id]
+  uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - previousNumCopy
+  if (uniqueCardNames[card.cardName] === 0) {
+    delete uniqueCardNames[card.cardName]
+  }
+
+  for (var i = 0; i < previousNumCopy; i++) {
+    for (var j = 0; j < deckList.length; j++) {
+      if (card === deckList[j]) {
+        deckList.splice(j, 1)
+      }
+    }
+  }
+}
 
 function updateDeck(selectElement) {
   var cardNumber = selectElement.getAttribute('card-number')
