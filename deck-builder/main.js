@@ -372,3 +372,8 @@ $return.addEventListener('click', function () {
   $viewDeck.classList.remove('hidden')
   $return.classList.add('hidden')
 })
+
+$deckListSection.addEventListener('change', function (event) {
+  var $targetSelectElement = event.target
+  console.log($targetSelectElement)
+})
