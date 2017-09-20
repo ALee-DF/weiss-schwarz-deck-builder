@@ -193,6 +193,58 @@ function deckCounter() {
   return deckInfo
 }
 
+function renderDeckListCard(card) {
+  var $div = document.createElement('div')
+  var $img = document.createElement('img')
+  var $p = document.createElement('p')
+  var $select = document.createElement('select')
+  var $option0 = document.createElement('option')
+  var $option1 = document.createElement('option')
+  var $option2 = document.createElement('option')
+  var $option3 = document.createElement('option')
+  var $option4 = document.createElement('option')
+
+  if (card.cardType === 'Climax') {
+    $div.className = 'climax-card-icons'
+    $img.className = 'full-climax-card-illustration'
+  }
+  else {
+    $div.className = 'card-icons'
+    $img.className = 'full-card-illustration'
+  }
+  $img.src = card.picture
+  $img.alt = card.cardName
+
+  $p.className = 'card-title'
+  $p.textContent = card.cardName + ' (' + card.rarity + ')'
+
+  $option0.value = 0
+  $option0.textContent = 0
+  $option1.value = 1
+  $option1.textContent = 1
+  $option1.setAttribute('selected', '')
+  $option2.value = 2
+  $option2.textContent = 2
+  $option3.value = 3
+  $option3.textContent = 3
+  $option4.value = 4
+  $option4.textContent = 4
+
+  $select.setAttribute('card-number', card.id)
+  $select.className = 'select-bar'
+  $select.appendChild($option0)
+  $select.appendChild($option1)
+  $select.appendChild($option2)
+  $select.appendChild($option3)
+  $select.appendChild($option4)
+
+  $div.appendChild($img)
+  $div.appendChild($p)
+  $div.appendChild($select)
+
+  return $div
+}
+
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
@@ -285,19 +337,9 @@ $cardList.addEventListener('click', function (event) {
     }
     else {
       uniqueCardNumbers[fullCardInfo.id] = 1
+      var levels = [$level0, $level1, $level2, $level3]
       if (fullCardInfo.cardType === 'Character') {
-        if (fullCardInfo.level === 0) {
-          $level0.appendChild(renderDeckListCard(fullCardInfo))
-        }
-        else if (fullCardInfo.level === 1) {
-          $level1.appendChild(renderDeckListCard(fullCardInfo))
-        }
-        else if (fullCardInfo.level === 2) {
-          $level2.appendChild(renderDeckListCard(fullCardInfo))
-        }
-        else if (fullCardInfo.level === 3) {
-          $level3.appendChild(renderDeckListCard(fullCardInfo))
-        }
+        levels[fullCardInfo.level].appendChild(renderDeckListCard(fullCardInfo))
       }
       else if (fullCardInfo.cardType === 'Event') {
         $event.appendChild(renderDeckListCard(fullCardInfo))
@@ -308,58 +350,6 @@ $cardList.addEventListener('click', function (event) {
     }
   }
 })
-
-function renderDeckListCard(card) {
-  var $div = document.createElement('div')
-  var $img = document.createElement('img')
-  var $p = document.createElement('p')
-  var $select = document.createElement('select')
-  var $option0 = document.createElement('option')
-  var $option1 = document.createElement('option')
-  var $option2 = document.createElement('option')
-  var $option3 = document.createElement('option')
-  var $option4 = document.createElement('option')
-
-  if (card.cardType === 'Climax') {
-    $div.className = 'climax-card-icons'
-    $img.className = 'full-climax-card-illustration'
-  }
-  else {
-    $div.className = 'card-icons'
-    $img.className = 'full-card-illustration'
-  }
-  $img.src = card.picture
-  $img.alt = card.cardName
-
-  $p.className = 'card-title'
-  $p.textContent = card.cardName + ' (' + card.rarity + ')'
-
-  $option0.value = 0
-  $option0.textContent = 0
-  $option1.value = 1
-  $option1.textContent = 1
-  $option1.setAttribute('selected', '')
-  $option2.value = 2
-  $option2.textContent = 2
-  $option3.value = 3
-  $option3.textContent = 3
-  $option4.value = 4
-  $option4.textContent = 4
-
-  $select.setAttribute('card-number', card.id)
-  $select.className = 'select-bar'
-  $select.appendChild($option0)
-  $select.appendChild($option1)
-  $select.appendChild($option2)
-  $select.appendChild($option3)
-  $select.appendChild($option4)
-
-  $div.appendChild($img)
-  $div.appendChild($p)
-  $div.appendChild($select)
-
-  return $div
-}
 
 $viewDeck.addEventListener('click', function () {
   if (deckList.length > 0) {
