@@ -18,10 +18,10 @@ var $level2 = document.querySelector('#level-2')
 var $level3 = document.querySelector('#level-3')
 var $event = document.querySelector('#event')
 var $climax = document.querySelector('#climax')
-var $confirm = document.querySelector('#confirm')
-var $returnBpSection = document.querySelector('#return-bp-section')
+var $viewCards = document.querySelector('#view-cards')
+var $viewPacks = document.querySelector('#view-packs')
 var $viewDeck = document.querySelector('#view-deck')
-var $viewCard = document.querySelector('#view-card')
+var $return = document.querySelector('#return')
 var selectedPacks = []
 var deckList = []
 var uniqueCardNames = {}
@@ -268,13 +268,13 @@ $boosterPacksSection.addEventListener('click', function (event) {
   }
 })
 
-$confirm.addEventListener('click', function () {
+$viewCards.addEventListener('click', function () {
   if (selectedPacks.length > 0) {
     $boosterPacksSection.classList.add('hidden')
     $cardListSection.classList.remove('hidden')
     $displayPacksSelected.classList.remove('hidden')
-    $confirm.classList.add('hidden')
-    $returnBpSection.classList.remove('hidden')
+    $viewCards.classList.add('hidden')
+    $viewPacks.classList.remove('hidden')
     clearList()
     selectedPacks.sort()
     $displayPacksSelected.textContent = displayPacks(selectedPacks)
@@ -290,12 +290,12 @@ $confirm.addEventListener('click', function () {
   }
 })
 
-$returnBpSection.addEventListener('click', function () {
+$viewPacks.addEventListener('click', function () {
   $boosterPacksSection.classList.remove('hidden')
   $cardListSection.classList.add('hidden')
   $displayPacksSelected.classList.add('hidden')
-  $confirm.classList.remove('hidden')
-  $returnBpSection.classList.add('hidden')
+  $viewCards.classList.remove('hidden')
+  $viewPacks.classList.add('hidden')
 })
 
 $cardList.addEventListener('click', function (event) {
@@ -361,14 +361,14 @@ $viewDeck.addEventListener('click', function () {
     $deckListSection.classList.remove('hidden')
     $cardsAndPacksButtons.classList.add('invisible')
     $viewDeck.classList.add('hidden')
-    $viewCard.classList.remove('hidden')
+    $return.classList.remove('hidden')
   }
 })
 
-$viewCard.addEventListener('click', function () {
+$return.addEventListener('click', function () {
   $boosterPackAndCardListSection.classList.remove('hidden')
   $deckListSection.classList.add('hidden')
   $cardsAndPacksButtons.classList.remove('invisible')
   $viewDeck.classList.remove('hidden')
-  $viewCard.classList.add('hidden')
+  $return.classList.add('hidden')
 })
