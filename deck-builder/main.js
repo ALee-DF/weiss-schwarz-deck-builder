@@ -358,14 +358,17 @@ $filters.addEventListener('change', function (event) {
   var desiredChoice = event.target.selectedIndex
   var filteredCards = listOfCards.slice('')
 
-  if (desiredChoice === 0) {
-    return
+  if (desiredChoice > 0) {
+    if ($targetSelectElement.id === 'level-filter') {
+      var desiredLevel = desiredChoice - 1
+      filteredCards = filteredCards.filter(function (card) {
+        return (card.level === desiredLevel)
+      })
+    }
   }
-  if ($targetSelectElement.id === 'level-filter') {
-    var desiredLevel = desiredChoice - 1
-    filteredCards = filteredCards.filter(function (card) {
-      return (card.level === desiredLevel)
-    })
+  clearList()
+  for (var i = 0; i < filteredCards.length; i++) {
+    $cardList.appendChild(renderCard(filteredCards[i]))
   }
 })
 
