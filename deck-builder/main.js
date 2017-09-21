@@ -366,6 +366,15 @@ $filters.addEventListener('change', function (event) {
       })
     }
   }
+
+  if (desiredChoice > 0) {
+    if ($targetSelectElement.id === 'cost-filter') {
+      var desiredCost = desiredChoice - 1
+      filteredCards = filteredCards.filter(function (card) {
+        return (card.cost === desiredCost)
+      })
+    }
+  }
   clearList()
   for (var i = 0; i < filteredCards.length; i++) {
     $cardList.appendChild(renderCard(filteredCards[i]))
