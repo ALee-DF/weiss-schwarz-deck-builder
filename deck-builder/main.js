@@ -117,11 +117,7 @@ function clearList() {
   }
 }
 
-function addCard(card) {
-  if (deckList.length === 50) {
-    return null
-  }
-
+function searchCardInfo(card) {
   var allCards = []
   for (var i = 0; i < boosterPacksList.length; i++) {
     if (card.class === boosterPacksList[i].id) {
@@ -136,6 +132,15 @@ function addCard(card) {
       var targetCard = allCards[k]
     }
   }
+  return targetCard
+}
+
+function addCard(card) {
+  if (deckList.length === 50) {
+    return null
+  }
+
+  var targetCard = searchCardInfo(card)
 
   if (targetCard.cardType !== 'Climax') {
     if (uniqueCardNames.hasOwnProperty(targetCard.cardName)) {
@@ -233,6 +238,7 @@ function renderDeckListCard(card) {
   $option4.textContent = 4
 
   $select.setAttribute('card-number', card.id)
+  $select.setAttribute('pack', card.class)
   $select.className = 'select-bar'
   $select.appendChild($option0)
   $select.appendChild($option1)
@@ -245,6 +251,50 @@ function renderDeckListCard(card) {
   $div.appendChild($select)
 
   return $div
+}
+
+function removeCardInDeck(card) {
+  var previousNumCopy = uniqueCardNumbers[card.id]
+  delete uniqueCardNumbers[card.id]
+  uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - previousNumCopy
+  if (uniqueCardNames[card.cardName] === 0) {
+    delete uniqueCardNames[card.cardName]
+  }
+
+  var removeCardIndex = []
+  for (var i = 0; i < deckList.length; i++) {
+    if (card === deckList[i]) {
+      removeCardIndex.push(i)
+    }
+  }
+  removeCardIndex.reverse()
+  for (var j = 0; j < removeCardIndex.length; j++) {
+    deckList.splice(removeCardIndex[j], 1)
+  }
+}
+
+function updateCardInDeck(card, currentCardCopies, desiredCopies, difference) {
+  if (desiredCopies > currentCardCopies) {
+    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] + difference
+    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] + difference
+    for (var i = 0; i < difference; i++) {
+      deckList.push(card)
+    }
+  }
+  else {
+    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] - difference
+    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - difference
+    var removeCardIndex = []
+    for (var j = 0; j < deckList.length; j++) {
+      if (card === deckList[j]) {
+        removeCardIndex.push(j)
+      }
+    }
+    removeCardIndex.reverse()
+    for (var k = 0; k < difference; k++) {
+      deckList.splice(removeCardIndex[k], 1)
+    }
+  }
 }
 
 for (var i = 0; i < boosterPacksList.length; i++) {
@@ -371,4 +421,45 @@ $return.addEventListener('click', function () {
   $cardsAndPacksButtons.classList.remove('invisible')
   $viewDeck.classList.remove('hidden')
   $return.classList.add('hidden')
+})
+
+$deckListSection.addEventListener('change', function (event) {
+  var $targetSelectElement = event.target
+  var desiredCopies = event.target.selectedIndex
+  var $card = {
+    cardNumber: $targetSelectElement.getAttribute('card-number'),
+    class: $targetSelectElement.getAttribute('pack')
+  }
+  var fullCardInfo = searchCardInfo($card)
+  if (desiredCopies === 0) {
+    $targetSelectElement.parentNode.remove()
+    removeCardInDeck(fullCardInfo)
+  }
+  else {
+    var currentCardCopies = uniqueCardNumbers[fullCardInfo.id]
+    var currentNameCopies = uniqueCardNames[fullCardInfo.cardName]
+    var difference = Math.abs(desiredCopies - currentCardCopies)
+    if ((desiredCopies > currentCardCopies) &&
+      (currentNameCopies + difference <= 4) &&
+      (deckList.length + difference <= 50)) {
+      $targetSelectElement.options[currentCardCopies].removeAttribute('selected')
+      $targetSelectElement.options[desiredCopies].setAttribute('selected', '')
+      updateCardInDeck(fullCardInfo, currentCardCopies, desiredCopies, difference)
+    }
+    else if (desiredCopies < currentCardCopies) {
+      $targetSelectElement.options[currentCardCopies].removeAttribute('selected')
+      $targetSelectElement.options[desiredCopies].setAttribute('selected', '')
+      updateCardInDeck(fullCardInfo, currentCardCopies, desiredCopies, difference)
+    }
+    else {
+      $targetSelectElement.options[currentCardCopies].removeAttribute('selected')
+      $targetSelectElement.options[currentCardCopies].setAttribute('selected', '')
+      $targetSelectElement.selectedIndex = currentCardCopies
+    }
+  }
+  var deckCount = deckCounter()
+  $characterCounter.textContent = deckCount.characterCount
+  $eventCounter.textContent = deckCount.eventCount
+  $climaxCounter.textContent = deckCount.climaxCount
+  $cardCounter.textContent = deckCount.cardCount + '/50'
 })
