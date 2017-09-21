@@ -116,9 +116,11 @@ header {
   padding-right: 10px;
   margin: 0;
   background-color: rgb(255, 255, 255);
+  font-size: 20px;
 }
 
 #card-list-section {
+  padding: 0 10px;
   background-color: rgb(255, 255, 255);
 }
 
@@ -140,7 +142,7 @@ td {
 
 table {
   border-collapse: collapse;
-  width: 1000px;
+  width: 980px;
 }
 
 th {
@@ -269,4 +271,15 @@ td {
 
 .deck-headers {
   border-bottom: ridge;
+}
+
+#filters {
+  text-align: right;
+  background-color: rgb(255, 255, 255);
+}
+
+.select-filters {
+  margin-right: 10px;
+  width: 100px;
+  font-size: 15px;
 }

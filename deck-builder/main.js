@@ -3,6 +3,7 @@
 var $boosterPacksSection = document.querySelector('#booster-packs-section')
 var $displayPacksSelected = document.querySelector('#display-packs-selected')
 var $cardListSection = document.querySelector('#card-list-section')
+var $filters = document.querySelector('#filters')
 var $deckListSection = document.querySelector('#deck-list-section')
 var $boosterPackAndCardListSection = document.querySelector('#booster-pack-and-card-list-section')
 var $cardsAndPacksButtons = document.querySelector('#cards-and-packs-buttons')
@@ -323,6 +324,7 @@ $viewCards.addEventListener('click', function () {
     $boosterPacksSection.classList.add('hidden')
     $cardListSection.classList.remove('hidden')
     $displayPacksSelected.classList.remove('hidden')
+    $filters.classList.remove('hidden')
     $viewCards.classList.add('hidden')
     $viewPacks.classList.remove('hidden')
     clearList()
@@ -344,6 +346,7 @@ $viewPacks.addEventListener('click', function () {
   $boosterPacksSection.classList.remove('hidden')
   $cardListSection.classList.add('hidden')
   $displayPacksSelected.classList.add('hidden')
+  $filters.classList.classList.add('hidden')
   $viewCards.classList.remove('hidden')
   $viewPacks.classList.add('hidden')
 })
@@ -402,7 +405,6 @@ $cardList.addEventListener('click', function (event) {
       $climax.appendChild(renderDeckListCard(fullCardInfo))
     }
   }
-
 })
 
 $viewDeck.addEventListener('click', function () {
