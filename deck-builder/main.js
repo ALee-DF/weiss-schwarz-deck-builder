@@ -253,6 +253,26 @@ function renderDeckListCard(card) {
   return $div
 }
 
+function removeCardInDeck(card) {
+  var previousNumCopy = uniqueCardNumbers[card.id]
+  delete uniqueCardNumbers[card.id]
+  uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - previousNumCopy
+  if (uniqueCardNames[card.cardName] === 0) {
+    delete uniqueCardNames[card.cardName]
+  }
+
+  var removeCardIndex = []
+  for (var i = 0; i < deckList.length; i++) {
+    if (card === deckList[i]) {
+      removeCardIndex.push(i)
+    }
+  }
+  removeCardIndex.reverse()
+  for (var j = 0; j < removeCardIndex.length; j++) {
+    deckList.splice(removeCardIndex[j], 1)
+  }
+}
+
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
@@ -381,49 +401,65 @@ $return.addEventListener('click', function () {
 
 $deckListSection.addEventListener('change', function (event) {
   var $targetSelectElement = event.target
-  var selectedIndex = event.target.selectedIndex
+  var desiredCopies = event.target.selectedIndex
   var $card = {
     cardNumber: $targetSelectElement.getAttribute('card-number'),
     class: $targetSelectElement.getAttribute('pack')
   }
   var fullCardInfo = searchCardInfo($card)
-  if (selectedIndex === 0) {
+  if (desiredCopies === 0) {
     $targetSelectElement.parentNode.remove()
     removeCardInDeck(fullCardInfo)
-    var deckCount = deckCounter()
-    $characterCounter.textContent = deckCount.characterCount
-    $eventCounter.textContent = deckCount.eventCount
-    $climaxCounter.textContent = deckCount.climaxCount
-    $cardCounter.textContent = deckCount.cardCount + '/50'
   }
   else {
-    updateDeck($targetSelectElement)
-  }
-})
-
-function removeCardInDeck(card) {
-  var previousNumCopy = uniqueCardNumbers[card.id]
-  delete uniqueCardNumbers[card.id]
-  uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - previousNumCopy
-  if (uniqueCardNames[card.cardName] === 0) {
-    delete uniqueCardNames[card.cardName]
-  }
-
-  for (var i = 0; i < previousNumCopy; i++) {
-    for (var j = 0; j < deckList.length; j++) {
-      if (card === deckList[j]) {
-        deckList.splice(j, 1)
-      }
+    var currentCardCopies = uniqueCardNumbers[fullCardInfo.id]
+    var currentNameCopies = uniqueCardNames[fullCardInfo.cardName]
+    var difference = Math.abs(desiredCopies - currentCardCopies)
+    if ((desiredCopies > currentCardCopies) &&
+      (currentNameCopies + difference <= 4) &&
+      (deckList.length + difference <= 50)) {
+      $targetSelectElement.options[currentCardCopies].removeAttribute('selected')
+      $targetSelectElement.options[desiredCopies].setAttribute('selected', '')
+      updateCardInDeck(fullCardInfo, currentCardCopies, desiredCopies, difference)
+    }
+    else if (desiredCopies < currentCardCopies) {
+      $targetSelectElement.options[currentCardCopies].removeAttribute('selected')
+      $targetSelectElement.options[desiredCopies].setAttribute('selected', '')
+      updateCardInDeck(fullCardInfo, currentCardCopies, desiredCopies, difference)
+    }
+    else {
+      $targetSelectElement.options[currentCardCopies].removeAttribute('selected')
+      $targetSelectElement.options[currentCardCopies].setAttribute('selected', '')
+      $targetSelectElement.selectedIndex = currentCardCopies
     }
   }
-}
+  var deckCount = deckCounter()
+  $characterCounter.textContent = deckCount.characterCount
+  $eventCounter.textContent = deckCount.eventCount
+  $climaxCounter.textContent = deckCount.climaxCount
+  $cardCounter.textContent = deckCount.cardCount + '/50'
+})
 
-function updateDeck(selectElement) {
-  var cardNumber = selectElement.getAttribute('card-number')
-  var pack = selectElement.getAttribute('pack')
-  var selectedIndex = selectElement.selectedIndex
-
-  console.log(cardNumber)
-  console.log(pack)
-  console.log(selectedIndex)
+function updateCardInDeck(card, currentCardCopies, desiredCopies, difference) {
+  if (desiredCopies > currentCardCopies) {
+    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] + difference
+    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] + difference
+    for (var i = 0; i < difference; i++) {
+      deckList.push(card)
+    }
+  }
+  else {
+    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] - difference
+    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - difference
+    var removeCardIndex = []
+    for (var j = 0; j < deckList.length; j++) {
+      if (card === deckList[j]) {
+        removeCardIndex.push(j)
+      }
+    }
+    removeCardIndex.reverse()
+    for (var k = 0; k < difference; k++) {
+      deckList.splice(removeCardIndex[k], 1)
+    }
+  }
 }
