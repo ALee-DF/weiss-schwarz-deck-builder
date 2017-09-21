@@ -29,6 +29,10 @@ var deckList = []
 var uniqueCardNames = {}
 var climaxCardCounter = 0
 var uniqueCardNumbers = {}
+var currentDesiredLevel = 'all-levels'
+var currentDesiredCost = 'all-costs'
+var currentDesiredColor = 'all-colors'
+var currentDesiredRarity = 'all-rarities'
 
 function renderPack(pack) {
   var $pack = document.createElement('button')
@@ -299,6 +303,34 @@ function updateCardInDeck(card, currentCardCopies, desiredCopies, difference) {
   }
 }
 
+function levelFilter(array, desiredLevel) {
+  var levelFilteredArray = array.filter(function (card) {
+    return (card.level === desiredLevel)
+  })
+  return levelFilteredArray
+}
+
+function costFilter(array, desiredCost) {
+  var costFilteredArray = array.filter(function (card) {
+    return (card.cost === desiredCost)
+  })
+  return costFilteredArray
+}
+
+function colorFilter(array, desiredColor) {
+  var colorFilteredArray = array.filter(function (card) {
+    return (card.color === desiredColor)
+  })
+  return colorFilteredArray
+}
+
+function rarityFilter(array, desiredRarity) {
+  var rarityFilteredArray = array.filter(function (card) {
+    return (card.rarity === desiredRarity)
+  })
+  return rarityFilteredArray
+}
+
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
@@ -349,48 +381,58 @@ $viewPacks.addEventListener('click', function () {
   $cardListSection.classList.add('hidden')
   $displayPacksSelected.classList.add('hidden')
   $filters.classList.add('hidden')
+  $filters.reset()
   $viewCards.classList.remove('hidden')
   $viewPacks.classList.add('hidden')
+  listOfCards = []
+  currentDesiredLevel = 'all-levels'
+  currentDesiredCost = 'all-costs'
+  currentDesiredColor = 'all-colors'
+  currentDesiredRarity = 'all-rarities'
 })
 
 $filters.addEventListener('change', function (event) {
   var $targetSelectElement = event.target
   var desiredChoice = event.target.selectedIndex
   var filteredCards = listOfCards.slice('')
-  if (desiredChoice > 0) {
-    if ($targetSelectElement.id === 'level-filter') {
-      var desiredLevel = desiredChoice - 1
-      filteredCards = filteredCards.filter(function (card) {
-        return (card.level === desiredLevel)
-      })
+
+  if ($targetSelectElement.id === 'level-filter') {
+    if ($targetSelectElement[desiredChoice].value === 'all-levels') {
+      currentDesiredLevel = 'all-levels'
+    }
+    else {
+      currentDesiredLevel = desiredChoice - 1
     }
   }
-
-  if (desiredChoice > 0) {
-    if ($targetSelectElement.id === 'cost-filter') {
-      var desiredCost = desiredChoice - 1
-      filteredCards = filteredCards.filter(function (card) {
-        return (card.cost === desiredCost)
-      })
+  else if ($targetSelectElement.id === 'cost-filter') {
+    if ($targetSelectElement[desiredChoice].value === 'all-costs') {
+      currentDesiredCost = 'all-costs'
+    }
+    else {
+      currentDesiredCost = desiredChoice - 1
     }
   }
-
-  if (desiredChoice > 0) {
-    if ($targetSelectElement.id === 'color-filter') {
-      var desiredColor = $targetSelectElement[desiredChoice].value
-      filteredCards = filteredCards.filter(function (card) {
-        return (card.color === desiredColor)
-      })
-    }
+  else if ($targetSelectElement.id === 'color-filter') {
+    currentDesiredColor = $targetSelectElement[desiredChoice].value
+  }
+  else if ($targetSelectElement.id === 'rarity-filter') {
+    currentDesiredRarity = $targetSelectElement[desiredChoice].value
   }
 
-  if (desiredChoice > 0) {
-    if ($targetSelectElement.id === 'rarity-filter') {
-      var desiredRarity = $targetSelectElement[desiredChoice].value
-      filteredCards = filteredCards.filter(function (card) {
-        return (card.rarity === desiredRarity)
-      })
-    }
+  if (currentDesiredLevel !== 'all-levels') {
+    filteredCards = levelFilter(filteredCards, currentDesiredLevel)
+  }
+
+  if (currentDesiredCost !== 'all-costs') {
+    filteredCards = filteredCards = costFilter(filteredCards, currentDesiredCost)
+  }
+
+  if (currentDesiredColor !== 'all-colors') {
+    filteredCards = colorFilter(filteredCards, currentDesiredColor)
+  }
+
+  if (currentDesiredRarity !== 'all-rarities') {
+    filteredCards = rarityFilter(filteredCards, currentDesiredRarity)
   }
   clearList()
   for (var i = 0; i < filteredCards.length; i++) {
