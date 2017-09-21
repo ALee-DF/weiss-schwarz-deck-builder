@@ -383,6 +383,15 @@ $filters.addEventListener('change', function (event) {
       })
     }
   }
+
+  if (desiredChoice > 0) {
+    if ($targetSelectElement.id === 'rarity-filter') {
+      var desiredRarity = $targetSelectElement[desiredChoice].value
+      filteredCards = filteredCards.filter(function (card) {
+        return (card.rarity === desiredRarity)
+      })
+    }
+  }
   clearList()
   for (var i = 0; i < filteredCards.length; i++) {
     $cardList.appendChild(renderCard(filteredCards[i]))
