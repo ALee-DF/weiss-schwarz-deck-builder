@@ -303,32 +303,11 @@ function updateCardInDeck(card, currentCardCopies, desiredCopies, difference) {
   }
 }
 
-function levelFilter(array, desiredLevel) {
-  var levelFilteredArray = array.filter(function (card) {
-    return (card.level === desiredLevel)
+function filterBy(array, value, property) {
+  var filteredArray = array.filter(function (element) {
+    return element[property] === value
   })
-  return levelFilteredArray
-}
-
-function costFilter(array, desiredCost) {
-  var costFilteredArray = array.filter(function (card) {
-    return (card.cost === desiredCost)
-  })
-  return costFilteredArray
-}
-
-function colorFilter(array, desiredColor) {
-  var colorFilteredArray = array.filter(function (card) {
-    return (card.color === desiredColor)
-  })
-  return colorFilteredArray
-}
-
-function rarityFilter(array, desiredRarity) {
-  var rarityFilteredArray = array.filter(function (card) {
-    return (card.rarity === desiredRarity)
-  })
-  return rarityFilteredArray
+  return filteredArray
 }
 
 for (var i = 0; i < boosterPacksList.length; i++) {
@@ -420,19 +399,19 @@ $filters.addEventListener('change', function (event) {
   }
 
   if (currentDesiredLevel !== 'all-levels') {
-    filteredCards = levelFilter(filteredCards, currentDesiredLevel)
+    filteredCards = filterBy(filteredCards, currentDesiredLevel, 'level')
   }
 
   if (currentDesiredCost !== 'all-costs') {
-    filteredCards = filteredCards = costFilter(filteredCards, currentDesiredCost)
+    filteredCards = filterBy(filteredCards, currentDesiredCost, 'cost')
   }
 
   if (currentDesiredColor !== 'all-colors') {
-    filteredCards = colorFilter(filteredCards, currentDesiredColor)
+    filteredCards = filterBy(filteredCards, currentDesiredColor, 'color')
   }
 
   if (currentDesiredRarity !== 'all-rarities') {
-    filteredCards = rarityFilter(filteredCards, currentDesiredRarity)
+    filteredCards = filterBy(filteredCards, currentDesiredRarity, 'rarity')
   }
   clearList()
   for (var i = 0; i < filteredCards.length; i++) {
