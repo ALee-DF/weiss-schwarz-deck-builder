@@ -22,7 +22,8 @@ var $climax = document.querySelector('#climax')
 var $viewCards = document.querySelector('#view-cards')
 var $viewPacks = document.querySelector('#view-packs')
 var $viewDeck = document.querySelector('#view-deck')
-var $return = document.querySelector('#return')
+var $returnPrevious = document.querySelector('#return')
+var listOfCards = []
 var selectedPacks = []
 var deckList = []
 var uniqueCardNames = {}
@@ -334,6 +335,7 @@ $viewCards.addEventListener('click', function () {
       for (var m = 0; m < boosterPacksList.length; m++) {
         if (selectedPacks[l] === boosterPacksList[m].id) {
           for (var n = 0; n < boosterPacksList[m].cards.length; n++) {
+            listOfCards.push(boosterPacksList[m].cards[n])
             $cardList.appendChild(renderCard(boosterPacksList[m].cards[n]))
           }
         }
@@ -346,9 +348,25 @@ $viewPacks.addEventListener('click', function () {
   $boosterPacksSection.classList.remove('hidden')
   $cardListSection.classList.add('hidden')
   $displayPacksSelected.classList.add('hidden')
-  $filters.classList.classList.add('hidden')
+  $filters.classList.add('hidden')
   $viewCards.classList.remove('hidden')
   $viewPacks.classList.add('hidden')
+})
+
+$filters.addEventListener('change', function (event) {
+  var $targetSelectElement = event.target
+  var desiredChoice = event.target.selectedIndex
+  var filteredCards = listOfCards.slice('')
+
+  if (desiredChoice === 0) {
+    return
+  }
+  if ($targetSelectElement.id === 'level-filter') {
+    var desiredLevel = desiredChoice - 1
+    filteredCards = filteredCards.filter(function (card) {
+      return (card.level === desiredLevel)
+    })
+  }
 })
 
 $cardList.addEventListener('click', function (event) {
@@ -413,16 +431,16 @@ $viewDeck.addEventListener('click', function () {
     $deckListSection.classList.remove('hidden')
     $cardsAndPacksButtons.classList.add('invisible')
     $viewDeck.classList.add('hidden')
-    $return.classList.remove('hidden')
+    $returnPrevious.classList.remove('hidden')
   }
 })
 
-$return.addEventListener('click', function () {
+$returnPrevious.addEventListener('click', function () {
   $boosterPackAndCardListSection.classList.remove('hidden')
   $deckListSection.classList.add('hidden')
   $cardsAndPacksButtons.classList.remove('invisible')
   $viewDeck.classList.remove('hidden')
-  $return.classList.add('hidden')
+  $returnPrevious.classList.add('hidden')
 })
 
 $deckListSection.addEventListener('change', function (event) {
