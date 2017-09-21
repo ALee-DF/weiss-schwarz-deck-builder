@@ -273,6 +273,30 @@ function removeCardInDeck(card) {
   }
 }
 
+function updateCardInDeck(card, currentCardCopies, desiredCopies, difference) {
+  if (desiredCopies > currentCardCopies) {
+    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] + difference
+    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] + difference
+    for (var i = 0; i < difference; i++) {
+      deckList.push(card)
+    }
+  }
+  else {
+    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] - difference
+    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - difference
+    var removeCardIndex = []
+    for (var j = 0; j < deckList.length; j++) {
+      if (card === deckList[j]) {
+        removeCardIndex.push(j)
+      }
+    }
+    removeCardIndex.reverse()
+    for (var k = 0; k < difference; k++) {
+      deckList.splice(removeCardIndex[k], 1)
+    }
+  }
+}
+
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
@@ -439,27 +463,3 @@ $deckListSection.addEventListener('change', function (event) {
   $climaxCounter.textContent = deckCount.climaxCount
   $cardCounter.textContent = deckCount.cardCount + '/50'
 })
-
-function updateCardInDeck(card, currentCardCopies, desiredCopies, difference) {
-  if (desiredCopies > currentCardCopies) {
-    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] + difference
-    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] + difference
-    for (var i = 0; i < difference; i++) {
-      deckList.push(card)
-    }
-  }
-  else {
-    uniqueCardNumbers[card.id] = uniqueCardNumbers[card.id] - difference
-    uniqueCardNames[card.cardName] = uniqueCardNames[card.cardName] - difference
-    var removeCardIndex = []
-    for (var j = 0; j < deckList.length; j++) {
-      if (card === deckList[j]) {
-        removeCardIndex.push(j)
-      }
-    }
-    removeCardIndex.reverse()
-    for (var k = 0; k < difference; k++) {
-      deckList.splice(removeCardIndex[k], 1)
-    }
-  }
-}
