@@ -357,7 +357,6 @@ $filters.addEventListener('change', function (event) {
   var $targetSelectElement = event.target
   var desiredChoice = event.target.selectedIndex
   var filteredCards = listOfCards.slice('')
-
   if (desiredChoice > 0) {
     if ($targetSelectElement.id === 'level-filter') {
       var desiredLevel = desiredChoice - 1
@@ -372,6 +371,15 @@ $filters.addEventListener('change', function (event) {
       var desiredCost = desiredChoice - 1
       filteredCards = filteredCards.filter(function (card) {
         return (card.cost === desiredCost)
+      })
+    }
+  }
+
+  if (desiredChoice > 0) {
+    if ($targetSelectElement.id === 'color-filter') {
+      var desiredColor = $targetSelectElement[desiredChoice].value
+      filteredCards = filteredCards.filter(function (card) {
+        return (card.color === desiredColor)
       })
     }
   }
