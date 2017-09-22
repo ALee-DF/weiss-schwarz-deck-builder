@@ -24,6 +24,22 @@ header {
 #card-count-section {
   float: right;
   color: white;
+  height: 100px;
+}
+
+.pie-charts {
+  visibility: hidden;
+  width: 350px;
+  height: 200px;
+  background-color: white;
+  position: absolute;
+  top: 100px;
+  z-index: 1;
+  color: black;
+}
+
+#card-count-section:hover .pie-charts {
+  visibility: visible;
 }
 
 .deck-column-1-of-4,
