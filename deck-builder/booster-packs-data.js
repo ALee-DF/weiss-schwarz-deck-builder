@@ -323,6 +323,416 @@ var boosterPacksList = [
     name: 'Sword Art Online Vol. 2',
     cards: [
       {
+        id: 's26-e040',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Memories from Last Night',
+        cardNumber: 'SAO/S26-E040',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Climax',
+        level: '',
+        power: '',
+        trigger: 'booster-packs/card-triggers/treasure.png',
+        rarity: 'CC',
+        side: 'S',
+        color: 'green',
+        cost: '',
+        soul: '',
+        attribute: [],
+        text: '【CONT】 All of your characters get +1000 power and +1 soul.\n ' +
+          '(【TREASURE】: When this card triggers, return this card to your ' +
+          'hand. You may put the top card of your deck into your stock.)',
+        flavorText: '……you can\'t be here right now.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e040-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e040.jpg'
+      },
+      {
+        id: 's26-e041',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: '《Cait Sith》 Girl, Silica',
+        cardNumber: 'SAO/S26-E041',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 1,
+        power: 7500,
+        trigger: '',
+        rarity: 'RR',
+        side: 'S',
+        color: 'red',
+        cost: 1,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 When this card is placed on stage from your hand, ' +
+          'reveal the top card of your deck. If the revealed card is not a ' +
+          '《Avatar》 or 《Net》 or 《Dragon》 character, at the beginning of ' +
+          'your encore step, put this card into your waiting room. (The ' +
+          'revealed card is returned to its original place.)',
+        flavorText: 'It\'s nice to meet you.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e041-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e041.jpg'
+      },
+      {
+        id: 's26-e041sp',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: '《Cait Sith》 Girl, Silica',
+        cardNumber: 'SAO/S26-E041SP',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 1,
+        power: 7500,
+        trigger: '',
+        rarity: 'SP',
+        side: 'S',
+        color: 'red',
+        cost: 1,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 When this card is placed on stage from your hand, ' +
+          'reveal the top card of your deck. If the revealed card is not a ' +
+          '《Avatar》 or 《Net》 or 《Dragon》 character, at the beginning of ' +
+          'your encore step, put this card into your waiting room. (The ' +
+          'revealed card is returned to its original place.)',
+        flavorText: '',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e041sp-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e041sp.jpg'
+      },
+      {
+        id: 's26-e042',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Silica\'s Relieved Smile',
+        cardNumber: 'SAO/S26-E042',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 2,
+        power: 7500,
+        trigger: 'booster-packs/card-triggers/soul.png',
+        rarity: 'RR',
+        side: 'S',
+        color: 'red',
+        cost: 1,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 When this card is placed on stage from your hand, look ' +
+          'at the top card of your deck, and put it on the top of your deck ' +
+          'or into your waiting room. 【AUTO】 [(2)] When this card attacks, ' +
+          'if a card named "Happening During Battle" is in your climax area, ' +
+          'you may pay the cost. If you do, deal one damage to your opponent, ' +
+          'choose up to one card in your opponent\'s waiting room, and put it ' +
+          'on the top of your opponent\'s deck. (This damage may be canceled)',
+        flavorText: 'Yes!',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e042-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e042.jpg'
+      },
+      {
+        id: 's26-e043',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Silica Looking Up At the Sky',
+        cardNumber: 'SAO/S26-E043',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 0,
+        power: 2500,
+        trigger: '',
+        rarity: 'R',
+        side: 'S',
+        color: 'red',
+        cost: 0,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 [(1) Put a card from your hand into your waiting ' +
+          'room] When this card is placed on stage from your hand, you may ' +
+          'pay the cost. If you do, search your deck for up to one 《Avatar》 ' +
+          'character, reveal it to your opponent, and put it into your hand. ' +
+          'Shuffle your deck afterwards.',
+        flavorText: '"As of 14:55, November 7, the game has been cleared--"',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e043-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e043.jpg'
+      },
+      {
+        id: 's26-e044',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: '《Leprechaun》 Girl, Lisbeth',
+        cardNumber: 'SAO/S26-E044',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 1,
+        power: 4500,
+        trigger: '',
+        rarity: 'R',
+        side: 'S',
+        color: 'red',
+        cost: 0,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【CONT】 If the number of cards in your stock is five or more, ' +
+          'this card gets the following ability. "【AUTO】 When this card ' +
+          'becomes 【REVERSE】, if this card\'s battle opponent is level 1 or ' +
+          'lower, you may 【REVERSE】 that character."',
+        flavorText: 'Heh heh, the stars of the show always turn up last.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e044-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e044.jpg'
+      },
+      {
+        id: 's26-e044s',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: '《Leprechaun》 Girl, Lisbeth',
+        cardNumber: 'SAO/S26-E044S',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 1,
+        power: 4500,
+        trigger: '',
+        rarity: 'SR',
+        side: 'S',
+        color: 'red',
+        cost: 0,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【CONT】 If the number of cards in your stock is five or more, ' +
+          'this card gets the following ability. "【AUTO】 When this card ' +
+          'becomes 【REVERSE】, if this card\'s battle opponent is level 1 or ' +
+          'lower, you may 【REVERSE】 that character."',
+        flavorText: 'Heh heh, the stars of the show always turn up last.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e044s-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e044s.jpg'
+      },
+      {
+        id: 's26-e045',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Silica\'s Bashful Troubled Look',
+        cardNumber: 'SAO/S26-E045',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 3,
+        power: 9500,
+        trigger: 'booster-packs/card-triggers/soul.png',
+        rarity: 'R',
+        side: 'S',
+        color: 'red',
+        cost: 2,
+        soul: 'booster-packs/card-triggers/double-soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【CONT】 This card gets +500 power for each of your other ' +
+          '《Avatar》 or 《Net》 or 《Dragon》 characters.\n【AUTO】 [(1)] When ' +
+          'this card is placed on stage from your hand, you may pay the cost. ' +
+          'If you do, deal one damage to your opponent. (This damage may be ' +
+          'canceled)',
+        flavorText: '……Did you see?',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e045-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e045.jpg'
+      },
+      {
+        id: 's26-e045s',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Silica\'s Bashful Troubled Look',
+        cardNumber: 'SAO/S26-E045S',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 3,
+        power: 9500,
+        trigger: 'booster-packs/card-triggers/soul.png',
+        rarity: 'SR',
+        side: 'S',
+        color: 'red',
+        cost: 2,
+        soul: 'booster-packs/card-triggers/double-soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【CONT】 This card gets +500 power for each of your other ' +
+          '《Avatar》 or 《Net》 or 《Dragon》 characters.\n【AUTO】 [(1)] When ' +
+          'this card is placed on stage from your hand, you may pay the cost. ' +
+          'If you do, deal one damage to your opponent. (This damage may be ' +
+          'canceled)',
+        flavorText: '……Did you see?',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e045s-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e045s.jpg'
+      },
+      {
+        id: 's26-e046',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Lisbeth\'s Shining Smile',
+        cardNumber: 'SAO/S26-E046',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 3,
+        power: 10000,
+        trigger: 'booster-packs/card-triggers/soul.png',
+        rarity: 'R',
+        side: 'S',
+        color: 'red',
+        cost: 2,
+        soul: 'booster-packs/card-triggers/double-soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 When this card is placed on stage from your hand, look ' +
+          'at the top card of your deck, and put it on the top of your deck ' +
+          'or into your waiting room. 【AUTO】 When this card is placed on ' +
+          'stage from your hand, this card gets +X power until end of turn. ' +
+          'X is equal to 500 multiplied by the number of 《Avatar》 or 《Net》 ' +
+          'characters you have.\n【AUTO】 [(1)] During your turn, when this ' +
+          'card\'s battle opponent becomes 【REVERSE】, you may pay the cost. ' +
+          'If you do, choose one of your opponent\'s level 2 or lower ' +
+          'characters on the center stage, and put it on the top of your ' +
+          'opponent\'s deck.',
+        flavorText: '',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e046-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e046.jpg'
+      },
+      {
+        id: 's26-e046sp',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Lisbeth\'s Shining Smile',
+        cardNumber: 'SAO/S26-E046SP',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 3,
+        power: 10000,
+        trigger: 'booster-packs/card-triggers/soul.png',
+        rarity: 'SP',
+        side: 'S',
+        color: 'red',
+        cost: 2,
+        soul: 'booster-packs/card-triggers/double-soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 When this card is placed on stage from your hand, look ' +
+          'at the top card of your deck, and put it on the top of your deck ' +
+          'or into your waiting room. 【AUTO】 When this card is placed on ' +
+          'stage from your hand, this card gets +X power until end of turn. ' +
+          'X is equal to 500 multiplied by the number of 《Avatar》 or 《Net》 ' +
+          'characters you have.\n【AUTO】 [(1)] During your turn, when this ' +
+          'card\'s battle opponent becomes 【REVERSE】, you may pay the cost. ' +
+          'If you do, choose one of your opponent\'s level 2 or lower ' +
+          'characters on the center stage, and put it on the top of your ' +
+          'opponent\'s deck.',
+        flavorText: '',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e046sp-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e046sp.jpg'
+      },
+      {
+        id: 's26-e047',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Rika Shinozaki',
+        cardNumber: 'SAO/S26-E047',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 0,
+        power: 2000,
+        trigger: '',
+        rarity: 'U',
+        side: 'S',
+        color: 'red',
+        cost: 0,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['net'],
+        text: '【AUTO】 [(2)] When this card is put into your waiting room ' +
+          'from the stage, you may pay the cost. If you do, choose a ' +
+          '《Avatar》 or 《Net》 character in your waiting room, and return it ' +
+          'to your hand.',
+        flavorText: 'Are you going to the meeting today?',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e047-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e047.jpg'
+      },
+      {
+        id: 's26-e048',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Realization of Love, Lisbeth',
+        cardNumber: 'SAO/S26-E048',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 0,
+        power: 2500,
+        trigger: '',
+        rarity: 'U',
+        side: 'S',
+        color: 'red',
+        cost: 0,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 When this card attacks, if a card named "Back to Her ' +
+          'Cheerful Self" is in your climax area, put the top three cards of ' +
+          'your deck into your waiting room. If all those cards are 《Avatar》 ' +
+          'or 《Net》 characters, choose a character in your waiting room, and ' +
+          'return it to your hand.',
+        flavorText: 'The warmth of Kirito\'s hands…… The way I feel……\nI ' +
+          'wasn\'t imagining it.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e048-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e048.jpg'
+      },
+      {
+        id: 's26-e048',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Realization of Love, Lisbeth',
+        cardNumber: 'SAO/S26-E048',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 0,
+        power: 2500,
+        trigger: '',
+        rarity: 'U',
+        side: 'S',
+        color: 'red',
+        cost: 0,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Avatar', 'Weapon'],
+        text: '【AUTO】 When this card attacks, if a card named "Back to Her ' +
+          'Cheerful Self" is in your climax area, put the top three cards of ' +
+          'your deck into your waiting room. If all those cards are 《Avatar》 ' +
+          'or 《Net》 characters, choose a character in your waiting room, and ' +
+          'return it to your hand.',
+        flavorText: 'The warmth of Kirito\'s hands…… The way I feel……\nI ' +
+          'wasn\'t imagining it.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e048-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e048.jpg'
+      },
+      {
+        id: 's26-e049',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Ceasefire Agreement, Keiko',
+        cardNumber: 'SAO/S26-E049',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 0,
+        power: 3500,
+        trigger: '',
+        rarity: 'U',
+        side: 'S',
+        color: 'red',
+        cost: 0,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Net', 'Animal'],
+        text: '【AUTO】 When this card is placed on stage from your hand, if ' +
+          'the number of climax in your waiting room is three or more, put ' +
+          'the top card of your deck into your clock.',
+        flavorText: 'Letting those two enjoy their romance for a month……\nYou ' +
+          'should have known better.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e049-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e049.jpg'
+      },
+      {
+        id: 's26-e050',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Keiko Ayano',
+        cardNumber: 'SAO/S26-E050',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Character',
+        level: 1,
+        power: 2000,
+        trigger: 'booster-packs/card-triggers/soul.png',
+        rarity: 'U',
+        side: 'S',
+        color: 'red',
+        cost: 1,
+        soul: 'booster-packs/card-triggers/soul.png',
+        attribute: ['Net', 'Animal'],
+        text: '【CONT】 Assist All of your 《Avatar》 or 《Net》 characters ' +
+          'in front of this card get +1 level and +500 power.\n【AUTO】 [(1)' +
+          ' Put the top card of your deck into your clock] When this card is ' +
+          'put into your waiting room from the stage, you may pay the cost. ' +
+          'If you do, search your deck for up to one 《Avatar》 or 《Net》 or ' +
+          '《Dragon》 character, reveal it to your opponent, and put it into ' +
+          'your hand. Shuffle your deck afterwards.',
+        flavorText: 'Of course-',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e050-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e050.jpg'
+      },
+      {
         id: 's26-e051',
         class: 'sword-art-online-vol-2-bp',
         cardName: 'Ceasefire Agreement, Rika',
