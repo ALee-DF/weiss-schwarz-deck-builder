@@ -47,10 +47,11 @@ function updatePieChart() {
     levelPieChart.destroy()
     colorPieChart.destroy()
   }
-  var level0Cards = filterBy(deckList, 0, 'level').length + filterBy(deckList, '', 'level').length
+  var level0Cards = filterBy(deckList, 0, 'level').length
   var level1Cards = filterBy(deckList, 1, 'level').length
   var level2Cards = filterBy(deckList, 2, 'level').length
   var level3Cards = filterBy(deckList, 3, 'level').length
+  var climaxCards = filterBy(deckList, '', 'level').length
   var yellowCards = filterBy(deckList, 'yellow', 'color').length
   var greenCards = filterBy(deckList, 'green', 'color').length
   var redCards = filterBy(deckList, 'red', 'color').length
@@ -67,11 +68,11 @@ function updatePieChart() {
   levelPieChart = new Chart($levelPieChart, {
     type: 'pie',
     data: {
-      labels: ['Level 0', 'Level 1', 'Level 2', 'Level 3'],
+      labels: ['Level 0', 'Level 1', 'Level 2', 'Level 3', 'Climax'],
       datasets: [{
         label: 'Level',
-        backgroundColor: ['rgb(164, 199, 91)', '#cd7f32', '#c0c0c0', '#ffd700'],
-        data: [level0Cards, level1Cards, level2Cards, level3Cards]
+        backgroundColor: ['rgb(164, 199, 91)', '#cd7f32', '#c0c0c0', '#ffd700', 'black'],
+        data: [level0Cards, level1Cards, level2Cards, level3Cards, climaxCards]
       }]
     },
     options: {
