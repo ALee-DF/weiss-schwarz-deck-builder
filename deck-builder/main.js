@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* global boosterPacksList */
+/* global Chart */
 var $boosterPacksSection = document.querySelector('#booster-packs-section')
 var $displayPacksSelected = document.querySelector('#display-packs-selected')
 var $cardListSection = document.querySelector('#card-list-section')
@@ -23,6 +24,10 @@ var $viewCards = document.querySelector('#view-cards')
 var $viewPacks = document.querySelector('#view-packs')
 var $viewDeck = document.querySelector('#view-deck')
 var $returnPrevious = document.querySelector('#return')
+var $levelPieChart = document.querySelector('#level-pie-chart')
+var $colorPieChart = document.querySelector('#color-pie-chart')
+var levelPieChart = null
+var colorPieChart = null
 var listOfCards = []
 var selectedPacks = []
 var deckList = []
@@ -33,6 +38,73 @@ var currentDesiredLevel = 'all-levels'
 var currentDesiredCost = 'all-costs'
 var currentDesiredColor = 'all-colors'
 var currentDesiredRarity = 'all-rarities'
+
+function updatePieChart() {
+  if (deckList.length === 0) {
+    return
+  }
+  if ((levelPieChart || colorPieChart) !== null) {
+    levelPieChart.destroy()
+    colorPieChart.destroy()
+  }
+  var level0Cards = filterBy(deckList, 0, 'level').length + filterBy(deckList, '', 'level').length
+  var level1Cards = filterBy(deckList, 1, 'level').length
+  var level2Cards = filterBy(deckList, 2, 'level').length
+  var level3Cards = filterBy(deckList, 3, 'level').length
+  var yellowCards = filterBy(deckList, 'yellow', 'color').length
+  var greenCards = filterBy(deckList, 'green', 'color').length
+  var redCards = filterBy(deckList, 'red', 'color').length
+  var blueCards = filterBy(deckList, 'blue', 'color').length
+  console.log(level0Cards)
+  console.log(level1Cards)
+  console.log(level2Cards)
+  console.log(level3Cards)
+  console.log('test')
+  console.log(yellowCards)
+  console.log(greenCards)
+  console.log(redCards)
+  console.log(blueCards)
+  levelPieChart = new Chart($levelPieChart, {
+    type: 'pie',
+    data: {
+      labels: ['Level 0', 'Level 1', 'Level 2', 'Level 3'],
+      datasets: [{
+        label: 'Level',
+        backgroundColor: ['rgb(164, 199, 91)', '#cd7f32', '#c0c0c0', '#ffd700'],
+        data: [level0Cards, level1Cards, level2Cards, level3Cards]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Level Distribution'
+      },
+      animation: {
+        duration: 0
+      }
+    }
+  })
+  colorPieChart = new Chart($colorPieChart, {
+    type: 'pie',
+    data: {
+      labels: ['YELLOW', 'GREEN', 'RED', 'BLUE'],
+      datasets: [{
+        label: 'Color',
+        backgroundColor: ['yellow', 'green', 'red', 'blue'],
+        data: [yellowCards, greenCards, redCards, blueCards]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Color Distribution'
+      },
+      animation: {
+        duration: 0
+      }
+    }
+  })
+}
 
 function renderPack(pack) {
   var $pack = document.createElement('button')
@@ -432,7 +504,7 @@ $cardList.addEventListener('click', function (event) {
   $eventCounter.textContent = deckCount.eventCount
   $climaxCounter.textContent = deckCount.climaxCount
   $cardCounter.textContent = deckCount.cardCount + '/50'
-
+  updatePieChart()
   if (fullCardInfo === null) {
     return
   }
@@ -532,4 +604,5 @@ $deckListSection.addEventListener('change', function (event) {
   $eventCounter.textContent = deckCount.eventCount
   $climaxCounter.textContent = deckCount.climaxCount
   $cardCounter.textContent = deckCount.cardCount + '/50'
+  updatePieChart()
 })

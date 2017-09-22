@@ -29,13 +29,19 @@ header {
 
 .pie-charts {
   visibility: hidden;
-  width: 350px;
-  height: 200px;
-  background-color: white;
+  width: 380px;
+  height: 400px;
   position: absolute;
+  background-color: rgba(235, 235, 235, 0.9);
   top: 100px;
+  right: 0;
   z-index: 1;
-  color: black;
+}
+
+.pie-chart-column-1-of-2,
+.pie-chart-column-2-of-2 {
+  width: 380px;
+  text-align: center;
 }
 
 #card-count-section:hover .pie-charts {
