@@ -323,6 +323,51 @@ var boosterPacksList = [
     name: 'Sword Art Online Vol. 2',
     cards: [
       {
+        id: 's26-e038',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Specialty of Sylvein',
+        cardNumber: 'SAO/S26-E038',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Event',
+        level: 1,
+        power: '',
+        trigger: '',
+        rarity: 'U',
+        side: 'S',
+        color: 'green',
+        cost: 0,
+        soul: '',
+        attribute: [],
+        text: 'Choose a 《Avatar》 or 《Net》 character in your clock, and ' +
+          'return it to your hand. Put this card into your clock.',
+        flavorText: 'I\'ve never heard of it.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e038-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e038.jpg'
+      },
+      {
+        id: 's26-e039',
+        class: 'sword-art-online-vol-2-bp',
+        cardName: 'Fairy Dance',
+        cardNumber: 'SAO/S26-E039',
+        expansion: 'Sword Art Online Vol. 2',
+        cardType: 'Climax',
+        level: '',
+        power: '',
+        trigger: 'booster-packs/card-triggers/double-soul.png',
+        rarity: 'CR',
+        side: 'S',
+        color: 'green',
+        cost: '',
+        soul: '',
+        attribute: [],
+        text: '【AUTO】 When this card is placed on your climax area from ' +
+          'hand, draw a card, choose one of your characters, and that ' +
+          'character gets +2000 power and +1 soul until end of turn. ',
+        flavorText: 'Hey, Kirito. Let\'s dance.',
+        previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e039-preview.jpg',
+        picture: 'booster-packs/sao-vol-2-card-list/card/s26-e039.jpg'
+      },
+      {
         id: 's26-e040',
         class: 'sword-art-online-vol-2-bp',
         cardName: 'Memories from Last Night',
@@ -341,7 +386,7 @@ var boosterPacksList = [
         text: '【CONT】 All of your characters get +1000 power and +1 soul.\n ' +
           '(【TREASURE】: When this card triggers, return this card to your ' +
           'hand. You may put the top card of your deck into your stock.)',
-        flavorText: '……you can\'t be here right now.',
+        flavorText: 'Sigh…',
         previewPic: 'booster-packs/sao-vol-2-card-list/card-preview/s26-e040-preview.jpg',
         picture: 'booster-packs/sao-vol-2-card-list/card/s26-e040.jpg'
       },
