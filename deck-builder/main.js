@@ -3,6 +3,7 @@
 var $boosterPacksSection = document.querySelector('#booster-packs-section')
 var $displayPacksSelected = document.querySelector('#display-packs-selected')
 var $cardListSection = document.querySelector('#card-list-section')
+var $filters = document.querySelector('#filters')
 var $deckListSection = document.querySelector('#deck-list-section')
 var $boosterPackAndCardListSection = document.querySelector('#booster-pack-and-card-list-section')
 var $cardsAndPacksButtons = document.querySelector('#cards-and-packs-buttons')
@@ -21,12 +22,17 @@ var $climax = document.querySelector('#climax')
 var $viewCards = document.querySelector('#view-cards')
 var $viewPacks = document.querySelector('#view-packs')
 var $viewDeck = document.querySelector('#view-deck')
-var $return = document.querySelector('#return')
+var $returnPrevious = document.querySelector('#return')
+var listOfCards = []
 var selectedPacks = []
 var deckList = []
 var uniqueCardNames = {}
 var climaxCardCounter = 0
 var uniqueCardNumbers = {}
+var currentDesiredLevel = 'all-levels'
+var currentDesiredCost = 'all-costs'
+var currentDesiredColor = 'all-colors'
+var currentDesiredRarity = 'all-rarities'
 
 function renderPack(pack) {
   var $pack = document.createElement('button')
@@ -297,6 +303,13 @@ function updateCardInDeck(card, currentCardCopies, desiredCopies, difference) {
   }
 }
 
+function filterBy(array, value, property) {
+  var filteredArray = array.filter(function (element) {
+    return element[property] === value
+  })
+  return filteredArray
+}
+
 for (var i = 0; i < boosterPacksList.length; i++) {
   $boosterPacksSection.appendChild(renderPack(boosterPacksList[i]))
 }
@@ -323,6 +336,7 @@ $viewCards.addEventListener('click', function () {
     $boosterPacksSection.classList.add('hidden')
     $cardListSection.classList.remove('hidden')
     $displayPacksSelected.classList.remove('hidden')
+    $filters.classList.remove('hidden')
     $viewCards.classList.add('hidden')
     $viewPacks.classList.remove('hidden')
     clearList()
@@ -332,6 +346,7 @@ $viewCards.addEventListener('click', function () {
       for (var m = 0; m < boosterPacksList.length; m++) {
         if (selectedPacks[l] === boosterPacksList[m].id) {
           for (var n = 0; n < boosterPacksList[m].cards.length; n++) {
+            listOfCards.push(boosterPacksList[m].cards[n])
             $cardList.appendChild(renderCard(boosterPacksList[m].cards[n]))
           }
         }
@@ -344,8 +359,64 @@ $viewPacks.addEventListener('click', function () {
   $boosterPacksSection.classList.remove('hidden')
   $cardListSection.classList.add('hidden')
   $displayPacksSelected.classList.add('hidden')
+  $filters.classList.add('hidden')
+  $filters.reset()
   $viewCards.classList.remove('hidden')
   $viewPacks.classList.add('hidden')
+  listOfCards = []
+  currentDesiredLevel = 'all-levels'
+  currentDesiredCost = 'all-costs'
+  currentDesiredColor = 'all-colors'
+  currentDesiredRarity = 'all-rarities'
+})
+
+$filters.addEventListener('change', function (event) {
+  var $targetSelectElement = event.target
+  var desiredChoice = event.target.selectedIndex
+  var filteredCards = listOfCards.slice('')
+
+  if ($targetSelectElement.id === 'level-filter') {
+    if ($targetSelectElement[desiredChoice].value === 'all-levels') {
+      currentDesiredLevel = 'all-levels'
+    }
+    else {
+      currentDesiredLevel = desiredChoice - 1
+    }
+  }
+  else if ($targetSelectElement.id === 'cost-filter') {
+    if ($targetSelectElement[desiredChoice].value === 'all-costs') {
+      currentDesiredCost = 'all-costs'
+    }
+    else {
+      currentDesiredCost = desiredChoice - 1
+    }
+  }
+  else if ($targetSelectElement.id === 'color-filter') {
+    currentDesiredColor = $targetSelectElement[desiredChoice].value
+  }
+  else if ($targetSelectElement.id === 'rarity-filter') {
+    currentDesiredRarity = $targetSelectElement[desiredChoice].value
+  }
+
+  if (currentDesiredLevel !== 'all-levels') {
+    filteredCards = filterBy(filteredCards, currentDesiredLevel, 'level')
+  }
+
+  if (currentDesiredCost !== 'all-costs') {
+    filteredCards = filterBy(filteredCards, currentDesiredCost, 'cost')
+  }
+
+  if (currentDesiredColor !== 'all-colors') {
+    filteredCards = filterBy(filteredCards, currentDesiredColor, 'color')
+  }
+
+  if (currentDesiredRarity !== 'all-rarities') {
+    filteredCards = filterBy(filteredCards, currentDesiredRarity, 'rarity')
+  }
+  clearList()
+  for (var i = 0; i < filteredCards.length; i++) {
+    $cardList.appendChild(renderCard(filteredCards[i]))
+  }
 })
 
 $cardList.addEventListener('click', function (event) {
@@ -402,7 +473,6 @@ $cardList.addEventListener('click', function (event) {
       $climax.appendChild(renderDeckListCard(fullCardInfo))
     }
   }
-
 })
 
 $viewDeck.addEventListener('click', function () {
@@ -411,16 +481,16 @@ $viewDeck.addEventListener('click', function () {
     $deckListSection.classList.remove('hidden')
     $cardsAndPacksButtons.classList.add('invisible')
     $viewDeck.classList.add('hidden')
-    $return.classList.remove('hidden')
+    $returnPrevious.classList.remove('hidden')
   }
 })
 
-$return.addEventListener('click', function () {
+$returnPrevious.addEventListener('click', function () {
   $boosterPackAndCardListSection.classList.remove('hidden')
   $deckListSection.classList.add('hidden')
   $cardsAndPacksButtons.classList.remove('invisible')
   $viewDeck.classList.remove('hidden')
-  $return.classList.add('hidden')
+  $returnPrevious.classList.add('hidden')
 })
 
 $deckListSection.addEventListener('change', function (event) {
